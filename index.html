@@ -200,7 +200,7 @@
     <div class="container">
         <div class="header-badge">ĐẶC QUYỀN HỆ THỐNG</div>
         <div class="title">HIỆP PS4 JAILBREAK</div>
-        <div class="subtitle">HOTLINE MUA BÁN TRAO ĐỔI PS4: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
+        <div class="subtitle">HOTLINE: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
 
         <div class="row">
             <span class="label">FIRMWARE</span>
@@ -208,7 +208,7 @@
         </div>
 
         <div class="row">
-            <span class="label">CÔNG CỤ</span>
+            <span class="label">TẢI TRỌNG</span>
             <span class="value" style="color: var(--tf-cyan);">GoldHEN v2.4b18.12</span>
         </div>
 
@@ -256,8 +256,7 @@
             }
 
             function loadScriptWithDelay(actionCallback) {
-                // Đặt độ trễ 8 giây (8000 mili-giây) để khách hàng kịp đọc thông tin
-                setStatus("Đang hiển thị thông tin hệ thống (8s)...", "warn");
+                setStatus("Hiển thị thông tin hệ thống (8s)...", "warn");
                 setTimeout(function() {
                     setStatus("Đang nạp dữ liệu khai thác...", "warn");
                     actionCallback();
@@ -297,7 +296,6 @@
                         } else if (fwNum >= 11.50 && fwNum <= 13.52) {
                             window.location.replace("cacheslopkit.html");
                         } else {
-                    } else {
                             fwInfo.innerHTML = fwVersion + ' · <span class="bad">KHÔNG HỖ TRỢ</span>';
                             setStatus("Phiên bản Firmware ngoài vùng phủ sóng", "bad");
                         }
