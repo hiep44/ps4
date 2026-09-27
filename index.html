@@ -139,6 +139,68 @@
             color: #ffffff;
         }
 
+        /* Khung Cảnh Báo Rủi Ro */
+        .warning-box {
+            background: rgba(255, 59, 48, 0.12);
+            border: 1px solid rgba(255, 59, 48, 0.4);
+            border-left: 6px solid #ff3b30;
+            border-radius: 4px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #fca5a5;
+        }
+
+        .warning-title {
+            color: #ff3b30;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-shadow: 0 0 6px rgba(255, 59, 48, 0.5);
+        }
+
+        /* Nút Jailbreak thủ công (Manual Trigger) */
+        .jb-btn-container {
+            text-align: center;
+        }
+
+        .jb-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+            color: #05080f;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--theme-primary);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .jb-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+
+        .jb-btn:active {
+            transform: scale(0.98);
+        }
+
+        .jb-btn:disabled {
+            background: #334155;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
         .ok { color: #00ff66; text-shadow: 0 0 8px #00ff66; }
         .bad { color: #ff1e38; text-shadow: 0 0 8px #ff1e38; }
         .warn { color: var(--theme-secondary); text-shadow: 0 0 8px var(--theme-secondary); }
@@ -196,17 +258,23 @@
 
         <div class="row">
             <span class="label">Trạng thái</span>
-            <span class="value" id="msgs">
-                <span class="loader-box">
-                    <span class="mini-loader"></span>
-                    <span class="warn">Đang khởi chạy...</span>
-                </span>
-            </span>
+            <span class="value" id="msgs">Đang kiểm tra hệ thống...</span>
+        </div>
+
+        <!-- Khung Cảnh Báo -->
+        <div class="warning-box">
+            <div class="warning-title">⚠️ Cảnh báo quan trọng</div>
+            JailBreak có tỷ lệ thành công chỉ là ~90% (nếu thất bại máy của bạn có thể bị sập nguồn).
+        </div>
+
+        <!-- Nút bấm Jailbreak thủ công (Manual Trigger) -->
+        <div class="jb-btn-container">
+            <button id="jb-action-btn" class="jb-btn" onclick="startJailbreak()" disabled>ĐANG KIỂM TRA MÁY...</button>
         </div>
     </div>
 
     <script>
-        // Cấu hình thông tin và link ảnh của bro vào đây
+        // Cấu hình thông tin và link ảnh của bro
         const themes = {
             cyberpunk: {
                 primary: "#00f0ff",
@@ -258,6 +326,8 @@
                     }
                 }
             } catch(e){}
+
+            initCheckEnvironment();
         });
 
         function setTheme(themeKey, evt) {
@@ -278,23 +348,65 @@
             try { localStorage.setItem('ps4_preferred_theme', themeKey); } catch(e){}
         }
 
-        // Logic check Firmware & chạy Exploit gốc của máy
-        (function () {
+        var globalFwNum = 0;
+        var isPS4Valid = false;
+
+        // Kiểm tra phần cứng và firmware
+        function initCheckEnvironment() {
             var uaFull = navigator.userAgent;
             var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
             var isPS4 = match !== null;
             var fwVersion = isPS4 ? match[1] : "Unknown";
-            var fwNum = parseFloat(fwVersion);
+            globalFwNum = parseFloat(fwVersion);
 
             var fwInfo = document.getElementById("fw-info");
             var msgs = document.getElementById("msgs");
+            var jbBtn = document.getElementById("jb-action-btn");
 
-            function setStatus(msgText, cls) {
-                msgs.innerHTML = '<span class="' + (cls || '') + '">' + msgText + '</span>';
+            if (!isPS4) {
+                fwInfo.textContent = "Không phải PS4";
+                msgs.innerHTML = '<span class="bad">Chỉ hỗ trợ máy PS4</span>';
+                jbBtn.textContent = "KHÔNG HỖ TRỢ";
+            } else {
+                if (window.applicationCache && window.applicationCache.status == 0) {
+                    fwInfo.innerHTML = fwVersion + ' · <span class="ok">Cache sẵn sàng</span>';
+                    msgs.innerHTML = 'Sẵn sàng chuyển hướng Cache';
+                    jbBtn.textContent = "▶ ĐI TỚI CACHE EXPLOIT";
+                    jbBtn.removeAttribute("disabled");
+                    isPS4Valid = true;
+                } else {
+                    if (globalFwNum == 5.05 || globalFwNum == 5.07 || 
+                        (globalFwNum >= 7.00 && globalFwNum <= 13.52)) {
+                        fwInfo.innerHTML = fwVersion + ' · <span class="ok">Được hỗ trợ</span>';
+                        msgs.innerHTML = 'Nhấn nút bên dưới để chạy Jailbreak';
+                        jbBtn.textContent = "▶ TIẾN HÀNH JAILBREAK";
+                        jbBtn.removeAttribute("disabled");
+                        isPS4Valid = true;
+                    } else {
+                        fwInfo.innerHTML = fwVersion + ' · <span class="bad">Không hỗ trợ</span>';
+                        msgs.innerHTML = '<span class="bad">Firmware ngoài vùng hỗ trợ</span>';
+                        jbBtn.textContent = "FW KHÔNG HỢP LỆ";
+                    }
+                }
             }
+        }
+
+        // Hàm thực thi khi người dùng bấm nút Jailbreak thủ công
+        function startJailbreak() {
+            if (!isPS4Valid) return;
+
+            var msgs = document.getElementById("msgs");
+            var jbBtn = document.getElementById("jb-action-btn");
+            
+            jbBtn.setAttribute("disabled", "true");
+            jbBtn.textContent = "ĐANG KHỞI CHẠY...";
+
+            msgs.innerHTML = '<span class="loader-box"><span class="mini-loader"></span><span class="warn">Đang tải tệp tải trọng...</span></span>';
 
             function onScriptError() {
-                setStatus("Lỗi tệp! Xóa dữ liệu web & cài lại Cache...", "bad");
+                msgs.innerHTML = '<span class="bad">Lỗi tải tệp! Xóa bộ nhớ cache web & thử lại.</span>';
+                jbBtn.removeAttribute("disabled");
+                jbBtn.textContent = "▶ THỬ LẠI JAILBREAK";
             }
 
             function loadScript(srcPath, isModule, onLoadCb) {
@@ -304,65 +416,50 @@
                 script.onerror = onScriptError;
                 script.onload = function () {
                     if (onLoadCb) onLoadCb();
-                    setTimeout(function () {
-                        if (script.parentNode) script.parentNode.removeChild(script);
-                    }, 1000);
                 };
                 document.head.appendChild(script);
             }
 
-            if (!isPS4) {
-                fwInfo.textContent = "Không phải PS4";
-                setStatus("Chỉ hỗ trợ máy PS4 FW 5.05 và 7.00 - 13.52", "bad");
+            if (window.applicationCache && window.applicationCache.status == 0) {
+                if (globalFwNum == 5.05 || globalFwNum == 5.07) {
+                    window.location.replace("cache505.html");
+                } else if (globalFwNum >= 7.00 && globalFwNum <= 8.52) {
+                    window.location.replace("cache700.html");
+                } else if (globalFwNum >= 9.00 && globalFwNum <= 9.60) {
+                    window.location.replace("cache900.html");
+                } else if (globalFwNum >= 10.00 && globalFwNum <= 11.02) {
+                    window.location.replace("cachecss.html");
+                } else if (globalFwNum >= 11.50 && globalFwNum <= 13.52) {
+                    window.location.replace("cacheslopkit.html");
+                }
             } else {
-                fwInfo.innerHTML = fwVersion + ' · <span class="ok">Được hỗ trợ</span>';
-
-                if (window.applicationCache && window.applicationCache.status == 0) {
-                    if (fwNum == 5.05 || fwNum == 5.07) {
-                        window.location.replace("cache505.html");
-                    } else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                        window.location.replace("cache700.html");
-                    } else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                        window.location.replace("cache900.html");
-                    } else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                        window.location.replace("cachecss.html");
-                    } else if (fwNum >= 11.50 && fwNum <= 13.52) {
-                        window.location.replace("cacheslopkit.html");
-                    } else {
-                        fwInfo.innerHTML = fwVersion + ' · <span class="bad">Không hỗ trợ</span>';
-                        setStatus("Phiên bản FW không được hỗ trợ", "bad");
-                    }
-                } else {
-                    setStatus("Đang tải GoldHEN... Vui lòng chờ", "warn");
-
-                    if (fwNum == 5.05 || fwNum == 5.07) {
-                        loadScript("505/exploit.js", false);
-                    }
-                    else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                        loadScript("700/alert.js", true);
-                    }
-                    else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                        loadScript("900/alert.js", true);
-                    }
-                    else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                        loadScript("css/main.js", false, function () {
-                            setTimeout(function () {
-                                typeof doJb === "function" && doJb();
-                            }, 500);
-                        });
-                    }
-                    else if (fwNum >= 11.50 && fwNum <= 12.02) {
-                        loadScript("slopkit/chain_lapse.js", true);
-                    }
-                    else if (fwNum >= 12.50 && fwNum <= 13.00) {
-                        loadScript("slopkit/chain_poops.js", true);
-                    }
-                    else if (fwNum >= 13.02 && fwNum <= 13.52) {
-                        loadScript("slopkit/jb.js?v=10", true);
-                    }
+                if (globalFwNum == 5.05 || globalFwNum == 5.07) {
+                    loadScript("505/exploit.js", false);
+                }
+                else if (globalFwNum >= 7.00 && globalFwNum <= 8.52) {
+                    loadScript("700/alert.js", true);
+                }
+                else if (globalFwNum >= 9.00 && globalFwNum <= 9.60) {
+                    loadScript("900/alert.js", true);
+                }
+                else if (globalFwNum >= 10.00 && globalFwNum <= 11.02) {
+                    loadScript("css/main.js", false, function () {
+                        setTimeout(function () {
+                            typeof doJb === "function" && doJb();
+                        }, 500);
+                    });
+                }
+                else if (globalFwNum >= 11.50 && globalFwNum <= 12.02) {
+                    loadScript("slopkit/chain_lapse.js", true);
+                }
+                else if (globalFwNum >= 12.50 && globalFwNum <= 13.00) {
+                    loadScript("slopkit/chain_poops.js", true);
+                }
+                else if (globalFwNum >= 13.02 && globalFwNum <= 13.52) {
+                    loadScript("slopkit/jb.js?v=10", true);
                 }
             }
-        })();
+        }
     </script>
 </body>
 
