@@ -34,7 +34,6 @@
             position: relative;
         }
 
-        /* Hiệu ứng mưa mã nguồn nhẹ nhàng tối ưu riêng cho PS4 Browser */
         #matrix-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -48,7 +47,6 @@
             line-height: 1;
         }
 
-        /* Lớp phủ lưới chiến đấu & làm mờ không gian */
         .overlay-grid {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -80,7 +78,6 @@
             );
         }
 
-        /* Viền sáng năng lượng ma trận bao quanh khung */
         .container::before {
             content: "";
             position: absolute;
@@ -153,11 +150,6 @@
             align-items: center;
         }
 
-        .row:hover {
-            border-left-color: var(--tf-orange);
-            background: rgba(0, 243, 255, 0.08);
-        }
-
         .label {
             color: #94a3b8;
             font-weight: 800;
@@ -174,20 +166,9 @@
             text-shadow: 0 0 6px rgba(255,255,255,0.5);
         }
 
-        .ok {
-            color: var(--tf-green);
-            text-shadow: 0 0 10px var(--tf-green);
-        }
-
-        .bad {
-            color: var(--tf-red);
-            text-shadow: 0 0 10px var(--tf-red);
-        }
-
-        .warn {
-            color: var(--tf-yellow);
-            text-shadow: 0 0 10px var(--tf-yellow);
-        }
+        .ok { color: var(--tf-green); text-shadow: 0 0 10px var(--tf-green); }
+        .bad { color: var(--tf-red); text-shadow: 0 0 10px var(--tf-red); }
+        .warn { color: var(--tf-yellow); text-shadow: 0 0 10px var(--tf-yellow); }
 
         .loader-box {
             display: inline-flex;
@@ -219,7 +200,7 @@
     <div class="container">
         <div class="header-badge">ĐẶC QUYỀN HỆ THỐNG</div>
         <div class="title">HIỆP PS4 JAILBREAK</div>
-        <div class="subtitle">HOTLINE: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
+        <div class="subtitle">HOTLINE MUA BÁN TRAO ĐỔI PS4: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
 
         <div class="row">
             <span class="label">FIRMWARE</span>
@@ -227,7 +208,7 @@
         </div>
 
         <div class="row">
-            <span class="label">TẢI TRỌNG</span>
+            <span class="label">CÔNG CỤ</span>
             <span class="value" style="color: var(--tf-cyan);">GoldHEN v2.4b18.12</span>
         </div>
 
@@ -248,7 +229,6 @@
     </div>
 
     <script>
-        // Hiệu ứng chữ chạy nền nhẹ nhàng tối ưu cho WebKit của PS4
         (function() {
             var bg = document.getElementById('matrix-bg');
             var text = "HIỆP PS4 • 0982440044 • PROTOCOL ACTIVE • SYSTEM ONLINE • ";
@@ -275,6 +255,15 @@
                 setStatus("Lỗi tệp! Xóa bộ nhớ đệm & Cài lại Cache...", "bad");
             }
 
+            function loadScriptWithDelay(actionCallback) {
+                // Đặt độ trễ 8 giây (8000 mili-giây) để khách hàng kịp đọc thông tin
+                setStatus("Đang hiển thị thông tin hệ thống (8s)...", "warn");
+                setTimeout(function() {
+                    setStatus("Đang nạp dữ liệu khai thác...", "warn");
+                    actionCallback();
+                }, 8000);
+            }
+
             function loadScript(srcPath, isModule, onLoadCb) {
                 var script = document.createElement('script');
                 if (isModule) script.type = 'module';
@@ -296,48 +285,51 @@
                 fwInfo.innerHTML = fwVersion + ' · <span class="ok">SẴN SÀNG</span>';
 
                 if (window.applicationCache && window.applicationCache.status == 0) {
-                    if (fwNum == 5.05 || fwNum == 5.07) {
-                        window.location.replace("cache505.html");
-                    } else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                        window.location.replace("cache700.html");
-                    } else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                        window.location.replace("cache900.html");
-                    } else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                        window.location.replace("cachecss.html");
-                    } else if (fwNum >= 11.50 && fwNum <= 13.52) {
-                        window.location.replace("cacheslopkit.html");
+                    loadScriptWithDelay(function() {
+                        if (fwNum == 5.05 || fwNum == 5.07) {
+                            window.location.replace("cache505.html");
+                        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                            window.location.replace("cache700.html");
+                        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                            window.location.replace("cache900.html");
+                        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                            window.location.replace("cachecss.html");
+                        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+                            window.location.replace("cacheslopkit.html");
+                        } else {
                     } else {
-                        fwInfo.innerHTML = fwVersion + ' · <span class="bad">KHÔNG HỖ TRỢ</span>';
-                        setStatus("Phiên bản Firmware ngoài vùng phủ sóng", "bad");
-                    }
+                            fwInfo.innerHTML = fwVersion + ' · <span class="bad">KHÔNG HỖ TRỢ</span>';
+                            setStatus("Phiên bản Firmware ngoài vùng phủ sóng", "bad");
+                        }
+                    });
                 } else {
-                    setStatus("Đang tải tệp tin GoldHEN...", "warn");
-
-                    if (fwNum == 5.05 || fwNum == 5.07) {
-                        loadScript("505/exploit.js", false);
-                    }
-                    else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                        loadScript("700/alert.js", true);
-                    }
-                    else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                        loadScript("900/alert.js", true);
-                    }
-                    else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                        loadScript("css/main.js", false, function () {
-                            setTimeout(function () {
-                                if (typeof doJb === "function") doJb();
-                            }, 500);
-                        });
-                    }
-                    else if (fwNum >= 11.50 && fwNum <= 12.02) {
-                        loadScript("slopkit/chain_lapse.js", true);
-                    }
-                    else if (fwNum >= 12.50 && fwNum <= 13.00) {
-                        loadScript("slopkit/chain_poops.js", true);
-                    }
-                    else if (fwNum >= 13.02 && fwNum <= 13.52) {
-                        loadScript("slopkit/jb.js?v=10", true);
-                    }
+                    loadScriptWithDelay(function() {
+                        if (fwNum == 5.05 || fwNum == 5.07) {
+                            loadScript("505/exploit.js", false);
+                        }
+                        else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                            loadScript("700/alert.js", true);
+                        }
+                        else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                            loadScript("900/alert.js", true);
+                        }
+                        else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                            loadScript("css/main.js", false, function () {
+                                setTimeout(function () {
+                                    if (typeof doJb === "function") doJb();
+                                }, 500);
+                            });
+                        }
+                        else if (fwNum >= 11.50 && fwNum <= 12.02) {
+                            loadScript("slopkit/chain_lapse.js", true);
+                        }
+                        else if (fwNum >= 12.50 && fwNum <= 13.00) {
+                            loadScript("slopkit/chain_poops.js", true);
+                        }
+                        else if (fwNum >= 13.02 && fwNum <= 13.52) {
+                            loadScript("slopkit/jb.js?v=10", true);
+                        }
+                    });
                 }
             }
         })();
