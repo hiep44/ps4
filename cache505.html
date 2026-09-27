@@ -1,69 +1,59 @@
+HTML
 <!DOCTYPE html>
 <html lang="vi" manifest="505.manifest">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CACHE SYSTEM - 0982440044</title>
+    <title>AUTO JAILBREAK PS4 - 0982440044</title>
     <style>
-        :root {
-            --tf-blue: #00e5ff;
-            --tf-orange: #ff6600;
-            --tf-yellow: #ffcc00;
-            --tf-red: #ff1a1a;
-            --bg-deep: #030508;
-            --panel-bg: rgba(8, 12, 20, 0.92);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Roboto, sans-serif; }
-        body {
-            background-color: var(--bg-deep);
-            background-image: linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;
-        }
-        .container {
-            width: 100%; max-width: 680px; background: var(--panel-bg); border: 2px solid var(--tf-blue); padding: 35px 30px;
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
-            clip-path: polygon(0 20px, 20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px));
-        }
-        .title { color: #fff; text-align: center; font-size: 26px; font-weight: 900; letter-spacing: 2px; margin-bottom: 6px; text-shadow: 0 0 10px var(--tf-blue); }
-        .subtitle { color: var(--tf-orange); text-align: center; font-size: 14px; font-weight: 800; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 8px var(--tf-orange); }
-        .row { background: rgba(15, 23, 42, 0.85); border-left: 5px solid var(--tf-blue); border: 1px solid rgba(0,229,255,0.2); padding: 18px 22px; margin-bottom: 15px; display: flex; justify-content: space-between; font-size: 16px; }
-        .label { color: #94a3b8; font-weight: 800; }
-        .value { font-weight: 800; color: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #03060a; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; overflow: hidden; }
+        .container { width: 100%; max-width: 620px; background: #060c18; border: 3px solid #00f0ff; border-radius: 8px; padding: 32px 28px; box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); position: relative; }
+        .container::before { content: ""; position: absolute; top: -3px; left: -3px; right: -3px; height: 4px; background: #ff7700; box-shadow: 0 0 10px #ff7700; }
+        .title { color: #ffffff; text-align: center; font-size: 26px; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+        .subtitle { color: #ff7700; text-align: center; font-size: 15px; font-weight: 800; letter-spacing: 2.5px; margin-bottom: 28px; text-transform: uppercase; text-shadow: 0 0 8px #ff7700; }
+        .row { background: #0a1426; border-left: 6px solid #00f0ff; border-top: 1px solid #1e3a8a; border-right: 1px solid #1e3a8a; border-bottom: 1px solid #1e3a8a; border-radius: 4px; padding: 18px 22px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+        .label { color: #93c5fd; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        .value { font-weight: 800; text-align: right; word-break: break-all; color: #ffffff; text-shadow: 0 0 6px rgba(255, 255, 255, 0.6); }
         .ok { color: #00ff66; text-shadow: 0 0 10px #00ff66; }
-        .bad { color: var(--tf-red); text-shadow: 0 0 10px var(--tf-red); }
-        .warn { color: var(--tf-yellow); text-shadow: 0 0 10px var(--tf-yellow); }
+        .bad { color: #ff1e38; text-shadow: 0 0 10px #ff1e38; }
+        .warn { color: #ff7700; text-shadow: 0 0 10px #ff7700; }
+        .loader-box { display: inline-flex; align-items: center; gap: 12px; }
+        .mini-loader { width: 16px; height: 16px; border: 3px solid rgba(255, 119, 0, 0.3); border-top-color: #ff7700; border-radius: 50%; animation: spin 0.8s infinite linear; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
     <script>
         history.replaceState(null, null, 'index.html');
         var histlength = history.length;
         history.go(-histlength);
-
         function DLProgress(e) {
             var percent = Math.round(e.loaded / e.total * 100);
             var msgs = document.getElementById("msgs");
-            if (msgs) msgs.innerHTML = '<span class="warn">Đang lưu Cache ngoại tuyến: ' + percent + '%</span>';
+            if (msgs) msgs.innerHTML = '<span class="loader-box"><span class="mini-loader"></span><span class="warn">NẠP LÕI CACHE: ' + percent + '%</span></span>';
         }
         function DisplayCacheProgress() {
             var msgs = document.getElementById("msgs");
             if (msgs) {
-                msgs.innerHTML = '<span class="ok">Lưu Cache thành công! Vui lòng khởi động lại trình duyệt.</span>';
+                msgs.innerHTML = '<span class="ok">HỆ THỐNG KẾT NỐI THÀNH CÔNG! ✔</span>';
+                setTimeout(function() { msgs.innerHTML = '<span class="warn">ĐÓNG VÀ MỞ LẠI TRÌNH DUYỆT...</span>'; }, 1500);
             }
         }
         window.applicationCache.addEventListener("progress", DLProgress, false);
-        window.applicationCache.oncached = DisplayCacheProgress;
-        window.applicationCache.onupdateready = DisplayCacheProgress;
-        window.applicationCache.onerror = function() {
+        window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+        window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+        window.applicationCache.onerror = function(e) {
             var msgs = document.getElementById("msgs");
-            if (msgs) msgs.innerHTML = '<span class="bad">Lỗi nạp Cache! Vui lòng xóa dữ liệu web cũ.</span>';
+            if (msgs) msgs.innerHTML = '<span class="bad">LỖI KẾT NỐI HỆ THỐNG! XÓA DỮ LIỆU...</span>';
         };
     </script>
 </head>
 <body>
     <div class="container">
-        <div class="title">AUTOBOT SYSTEM CACHE</div>
-        <div class="subtitle">0982440044 • GIAO THỨC OFFLINE (FW 5.05)</div>
-        <div class="row"><span class="label">TRẠNG THÁI CACHE</span><span class="value" id="msgs"><span class="warn">Đang kết nối khối dữ liệu...</span></span></div>
+        <div class="title">AUTO JAILBREAK PS4</div>
+        <div class="subtitle">0982440044 • FW 5.05 PROTOCOL</div>
+        <div class="row"><span class="label">PHIÊN BẢN</span><span class="value ok">FW 5.05</span></div>
+        <div class="row"><span class="label">MANIFEST</span><span class="value">505.manifest</span></div>
+        <div class="row"><span class="label">TRẠNG THÁI</span><span class="value" id="msgs"><span class="loader-box"><span class="mini-loader"></span><span class="warn">ĐANG KHỞI ĐỘNG HỆ THỐNG...</span></span></span></div>
     </div>
 </body>
 </html>
