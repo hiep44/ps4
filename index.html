@@ -4,15 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HIỆP PS4 - QUANTUM MATRIX SYSTEM</title>
+    <title>AUTO JAILBREAK PS4 - 0982440044</title>
     <style>
         :root {
-            --tf-cyan: #00f3ff;
-            --tf-orange: #ff5500;
-            --tf-yellow: #ffe600;
-            --tf-green: #00ff66;
-            --tf-red: #ff003c;
-            --bg-deep: #010306;
+            --theme-primary: #00f0ff;
+            --theme-secondary: #ffe600;
+            --bg-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920&auto=format&fit=crop');
         }
 
         * {
@@ -20,155 +17,127 @@
             margin: 0;
             padding: 0;
             font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
         }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: #03060a;
+            background-image: linear-gradient(rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.92)), var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        #matrix-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            opacity: 0.15;
-            pointer-events: none;
-            font-family: monospace;
-            font-size: 14px;
-            color: var(--tf-cyan);
-            overflow: hidden;
-            line-height: 1;
-        }
-
-        .overlay-grid {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 50% 40%, rgba(255, 85, 0, 0.15) 0%, transparent 70%);
-            background-size: 35px 35px, 35px 35px, 100% 100%;
-            z-index: 2;
-            pointer-events: none;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 720px;
-            background: rgba(4, 8, 16, 0.94);
-            border: 2px solid var(--tf-cyan);
-            border-radius: 8px;
-            padding: 35px 30px;
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3), 
-                        inset 0 0 25px rgba(255, 85, 0, 0.15);
+            max-width: 650px;
+            background: rgba(6, 12, 24, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 3px solid var(--theme-primary);
+            border-radius: 10px;
+            padding: 28px 24px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), 0 0 20px var(--theme-primary);
             position: relative;
-            z-index: 10;
-            clip-path: polygon(
-                0 20px, 20px 0, 
-                calc(100% - 20px) 0, 100% 20px, 
-                100% calc(100% - 20px), calc(100% - 20px) 100%, 
-                20px 100%, 0 calc(100% - 20px)
-            );
         }
 
         .container::before {
             content: "";
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border: 2px dashed var(--tf-orange);
-            z-index: -1;
-            opacity: 0.6;
-            animation: borderPulse 4s infinite alternate;
-            clip-path: polygon(
-                0 20px, 20px 0, 
-                calc(100% - 20px) 0, 100% 20px, 
-                100% calc(100% - 20px), calc(100% - 20px) 100%, 
-                20px 100%, 0 calc(100% - 20px)
-            );
-        }
-
-        @keyframes borderPulse {
-            from { opacity: 0.3; filter: drop-shadow(0 0 2px var(--tf-orange)); }
-            to { opacity: 0.8; filter: drop-shadow(0 0 10px var(--tf-orange)); }
-        }
-
-        .header-badge {
-            display: inline-block;
-            background: rgba(255, 85, 0, 0.15);
-            border: 1px solid var(--tf-orange);
-            color: var(--tf-orange);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            padding: 4px 12px;
-            border-radius: 2px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
+            top: -3px; left: -3px; right: -3px; height: 4px;
+            background: var(--theme-secondary);
+            box-shadow: 0 0 12px var(--theme-secondary);
         }
 
         .title {
-            color: #fff;
-            font-size: 30px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 24px;
             font-weight: 900;
             letter-spacing: 2px;
             margin-bottom: 6px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--tf-cyan), 0 0 20px var(--tf-cyan);
+            text-shadow: 0 0 10px var(--theme-primary);
         }
 
         .subtitle {
-            color: #94a3b8;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            margin-bottom: 30px;
+            color: var(--theme-secondary);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px var(--theme-secondary);
+        }
+
+        /* Menu chọn game AAA */
+        .game-picker {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .game-btn {
+            background: rgba(10, 20, 38, 0.9);
+            border: 2px solid #1e3a8a;
+            color: #93c5fd;
+            padding: 10px 4px;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
             text-transform: uppercase;
         }
 
-        .subtitle span {
-            color: var(--tf-yellow);
+        .game-btn.active, .game-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--theme-primary);
+            color: #ffffff;
+            box-shadow: 0 0 12px var(--theme-primary);
         }
 
         .row {
-            background: rgba(12, 18, 32, 0.9);
-            border-left: 5px solid var(--tf-cyan);
-            border-right: 1px solid rgba(0, 243, 255, 0.2);
-            border-top: 1px solid rgba(0, 243, 255, 0.2);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 3px;
-            padding: 16px 20px;
-            margin-bottom: 14px;
+            background: rgba(10, 20, 38, 0.75);
+            border-left: 6px solid var(--theme-primary);
+            border-top: 1px solid rgba(30, 58, 138, 0.6);
+            border-right: 1px solid rgba(30, 58, 138, 0.6);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.6);
+            border-radius: 4px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 15px;
         }
 
         .label {
-            color: #94a3b8;
+            color: #93c5fd;
             font-weight: 800;
             letter-spacing: 1px;
-            font-size: 15px;
             text-transform: uppercase;
         }
 
         .value {
             font-weight: 800;
-            color: #fff;
-            font-size: 16px;
             text-align: right;
-            text-shadow: 0 0 6px rgba(255,255,255,0.5);
+            word-break: break-all;
+            color: #ffffff;
         }
 
-        .ok { color: var(--tf-green); text-shadow: 0 0 10px var(--tf-green); }
-        .bad { color: var(--tf-red); text-shadow: 0 0 10px var(--tf-red); }
-        .warn { color: var(--tf-yellow); text-shadow: 0 0 10px var(--tf-yellow); }
+        .ok { color: #00ff66; text-shadow: 0 0 8px #00ff66; }
+        .bad { color: #ff1e38; text-shadow: 0 0 8px #ff1e38; }
+        .warn { color: var(--theme-secondary); text-shadow: 0 0 8px var(--theme-secondary); }
 
         .loader-box {
             display: inline-flex;
@@ -177,10 +146,10 @@
         }
 
         .mini-loader {
-            width: 16px;
-            height: 16px;
-            border: 3px solid rgba(255, 85, 0, 0.3);
-            border-top-color: var(--tf-orange);
+            width: 14px;
+            height: 14px;
+            border: 3px solid rgba(255, 119, 0, 0.3);
+            border-top-color: var(--theme-secondary);
             border-radius: 50%;
             animation: spin 0.8s infinite linear;
         }
@@ -194,49 +163,111 @@
 
 <body>
 
-    <div id="matrix-bg">HIỆP PS4 • 0982440044 • QUANTUM MATRIX • SYSTEM READY • JAILBREAK •</div>
-    <div class="overlay-grid"></div>
+    <div class="container" id="main-container">
+        <div class="title" id="launcher-title">AUTO JAILBREAK PS4</div>
+        <div class="subtitle" id="launcher-subtitle">0982440044 • CHỌN GIAO DIỆN GAME AAA</div>
 
-    <div class="container">
-        <div class="header-badge">ĐẶC QUYỀN HỆ THỐNG</div>
-        <div class="title">HIỆP PS4 JAILBREAK</div>
-        <div class="subtitle">HOTLINE: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
+        <!-- Khung chọn game -->
+        <div class="game-picker">
+            <button class="game-btn active" onclick="setTheme('cyberpunk', event)">Cyberpunk</button>
+            <button class="game-btn" onclick="setTheme('gow', event)">God of War</button>
+            <button class="game-btn" onclick="setTheme('sekiro', event)">Sekiro</button>
+            <button class="game-btn" onclick="setTheme('witcher', event)">Witcher 3</button>
+        </div>
 
         <div class="row">
-            <span class="label">FIRMWARE</span>
+            <span class="label">Firmware</span>
             <span class="value" id="fw-info">Đang kiểm tra...</span>
         </div>
 
         <div class="row">
-            <span class="label">TẢI TRỌNG</span>
-            <span class="value" style="color: var(--tf-cyan);">GoldHEN v2.4b18.12</span>
+            <span class="label">Tải trọng</span>
+            <span class="value">GoldHEN v2.4b18.12</span>
         </div>
 
         <div class="row">
-            <span class="label">GIAO THỨC</span>
-            <span class="value">QUANTUM MATRIX v3.0</span>
+            <span class="label">Chủ đề hiện tại</span>
+            <span class="value" id="theme-name" style="color: var(--theme-primary);">Cyberpunk 2077</span>
         </div>
 
         <div class="row">
-            <span class="label">TRẠNG THÁI</span>
+            <span class="label">Trạng thái</span>
             <span class="value" id="msgs">
                 <span class="loader-box">
                     <span class="mini-loader"></span>
-                    <span class="warn">Đang khởi tạo ma trận...</span>
+                    <span class="warn">Đang khởi chạy...</span>
                 </span>
             </span>
         </div>
     </div>
 
     <script>
-        (function() {
-            var bg = document.getElementById('matrix-bg');
-            var text = "HIỆP PS4 • 0982440044 • PROTOCOL ACTIVE • SYSTEM ONLINE • ";
-            var content = "";
-            for(var i=0; i<15; i++) { content += text + "<br>"; }
-            bg.innerHTML = content;
-        })();
+        // Cấu hình bảng màu, tên và hình nền artwork cho từng tựa game
+        const themes = {
+            cyberpunk: {
+                primary: "#00f0ff",
+                secondary: "#ffe600",
+                image: "url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920&auto=format&fit=crop')",
+                name: "Cyberpunk 2077"
+            },
+            gow: {
+                primary: "#ff3b30",
+                secondary: "#ffcc00",
+                image: "url('https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=1920&auto=format&fit=crop')",
+                name: "God of War (Runic)"
+            },
+            sekiro: {
+                primary: "#ff8800",
+                secondary: "#e2e8f0",
+                image: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop')",
+                name: "Sekiro: Shadows Die Twice"
+            },
+            witcher: {
+                primary: "#10b981",
+                secondary: "#94a3b8",
+                image: "url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop')",
+                name: "The Witcher 3 (Wolf)"
+            }
+        };
 
+        function setTheme(themeKey, evt) {
+            const t = themes[themeKey];
+            const root = document.documentElement;
+            
+            root.style.setProperty('--theme-primary', t.primary);
+            root.style.setProperty('--theme-secondary', t.secondary);
+            root.style.setProperty('--bg-image', t.image);
+
+            document.getElementById('theme-name').textContent = t.name;
+
+            document.querySelectorAll('.game-btn').forEach(btn => btn.classList.remove('active'));
+            if (evt && evt.target) {
+                evt.target.classList.add('active');
+            }
+
+            try { localStorage.setItem('ps4_preferred_theme', themeKey); } catch(e){}
+        }
+
+        // Khôi phục chủ đề người dùng đã chọn lần trước
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const savedTheme = localStorage.getItem('ps4_preferred_theme');
+                if (savedTheme && themes[savedTheme]) {
+                    const btn = Array.from(document.querySelectorAll('.game-btn')).find(b => b.getAttribute('onclick').includes(savedTheme));
+                    if (btn) {
+                        document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const t = themes[savedTheme];
+                        document.documentElement.style.setProperty('--theme-primary', t.primary);
+                        document.documentElement.style.setProperty('--theme-secondary', t.secondary);
+                        document.documentElement.style.setProperty('--bg-image', t.image);
+                        document.getElementById('theme-name').textContent = t.name;
+                    }
+                }
+            } catch(e){}
+        });
+
+        // Logic check Firmware & chạy Exploit gốc
         (function () {
             var uaFull = navigator.userAgent;
             var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
@@ -252,15 +283,7 @@
             }
 
             function onScriptError() {
-                setStatus("Lỗi tệp! Xóa bộ nhớ đệm & Cài lại Cache...", "bad");
-            }
-
-            function loadScriptWithDelay(actionCallback) {
-                setStatus("Hiển thị thông tin hệ thống (8s)...", "warn");
-                setTimeout(function() {
-                    setStatus("Đang nạp dữ liệu khai thác...", "warn");
-                    actionCallback();
-                }, 8000);
+                setStatus("Lỗi tệp! Xóa dữ liệu web & cài lại Cache...", "bad");
             }
 
             function loadScript(srcPath, isModule, onLoadCb) {
@@ -279,55 +302,53 @@
 
             if (!isPS4) {
                 fwInfo.textContent = "Không phải PS4";
-                setStatus("Chỉ hỗ trợ phần cứng PlayStation 4", "bad");
+                setStatus("Chỉ hỗ trợ máy PS4 FW 5.05 và 7.00 - 13.52", "bad");
             } else {
-                fwInfo.innerHTML = fwVersion + ' · <span class="ok">SẴN SÀNG</span>';
+                fwInfo.innerHTML = fwVersion + ' · <span class="ok">Được hỗ trợ</span>';
 
                 if (window.applicationCache && window.applicationCache.status == 0) {
-                    loadScriptWithDelay(function() {
-                        if (fwNum == 5.05 || fwNum == 5.07) {
-                            window.location.replace("cache505.html");
-                        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                            window.location.replace("cache700.html");
-                        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                            window.location.replace("cache900.html");
-                        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                            window.location.replace("cachecss.html");
-                        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
-                            window.location.replace("cacheslopkit.html");
-                        } else {
-                            fwInfo.innerHTML = fwVersion + ' · <span class="bad">KHÔNG HỖ TRỢ</span>';
-                            setStatus("Phiên bản Firmware ngoài vùng phủ sóng", "bad");
-                        }
-                    });
+                    if (fwNum == 5.05 || fwNum == 5.07) {
+                        window.location.replace("cache505.html");
+                    } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                        window.location.replace("cache700.html");
+                    } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                        window.location.replace("cache900.html");
+                    } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                        window.location.replace("cachecss.html");
+                    } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+                        window.location.replace("cacheslopkit.html");
+                    } else {
+                        fwInfo.innerHTML = fwVersion + ' · <span class="bad">Không hỗ trợ</span>';
+                        setStatus("Phiên bản FW không được hỗ trợ", "bad");
+                    }
                 } else {
-                    loadScriptWithDelay(function() {
-                        if (fwNum == 5.05 || fwNum == 5.07) {
-                            loadScript("505/exploit.js", false);
-                        }
-                        else if (fwNum >= 7.00 && fwNum <= 8.52) {
-                            loadScript("700/alert.js", true);
-                        }
-                        else if (fwNum >= 9.00 && fwNum <= 9.60) {
-                            loadScript("900/alert.js", true);
-                        }
-                        else if (fwNum >= 10.00 && fwNum <= 11.02) {
-                            loadScript("css/main.js", false, function () {
-                                setTimeout(function () {
-                                    if (typeof doJb === "function") doJb();
-                                }, 500);
-                            });
-                        }
-                        else if (fwNum >= 11.50 && fwNum <= 12.02) {
-                            loadScript("slopkit/chain_lapse.js", true);
-                        }
-                        else if (fwNum >= 12.50 && fwNum <= 13.00) {
-                            loadScript("slopkit/chain_poops.js", true);
-                        }
-                        else if (fwNum >= 13.02 && fwNum <= 13.52) {
-                            loadScript("slopkit/jb.js?v=10", true);
-                        }
-                    });
+                    setStatus("Đang tải GoldHEN... Vui lòng chờ", "warn");
+
+                    if (fwNum == 5.05 || fwNum == 5.07) {
+                        loadScript("505/exploit.js", false);
+                    }
+                    else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                        loadScript("700/alert.js", true);
+                    }
+                    else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                        loadScript("900/alert.js", true);
+                    }
+                    else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                        loadScript("css/main.js", false, function () {
+                            setTimeout(function () {
+                                if (typeof doJb === "function") doJb();
+                            }, 500);
+                        });
+                    }
+                    else if (fwNum >= 11.50 && fwNum <= 12.02) {
+                        loadScript("slopkit/chain_lapse.js", true);
+                    }
+                    else if (fwNum >= 12.50 && fwNum <= 13.00) {
+                        loadScript("slopkit/chain_poops.js", true);
+                    }
+                    else if (fwNum >= 13.02 && fwNum <= 13.52) {
+                        loadScript("slopkit/jb.js?v=10", true);
+                    }
                 }
             }
         })();
