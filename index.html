@@ -9,7 +9,7 @@
         :root {
             --theme-primary: #00f0ff;
             --theme-secondary: #ffe600;
-            --bg-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Cyberpunk_2077_logo.svg');
+            --bg-image: url('https://image.api.playstation.com/vulcan/ap/rnd/202111/1910/T1i7u4i9a8r2n4n3s6g0x7l8.png');
         }
 
         * {
@@ -21,9 +21,9 @@
         }
 
         body {
-            background-color: #0d1117;
-            /* Giảm độ tối của lớp phủ để hình nền sáng, rõ nét hơn */
-            background-image: linear-gradient(rgba(13, 17, 23, 0.45), rgba(13, 17, 23, 0.65)), var(--bg-image);
+            background-color: #05080f;
+            /* Lớp phủ cực mỏng để ảnh nền game hiện lên sáng rõ, sắc nét */
+            background-image: linear-gradient(rgba(5, 8, 15, 0.35), rgba(5, 8, 15, 0.55)), var(--bg-image);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -203,30 +203,30 @@
     </div>
 
     <script>
-        // Cấu hình hình nền sử dụng link CDN trực tiếp, không bị chặn CORS
+        // Cấu hình đúng chuẩn nguồn ảnh artwork từ PlayStation Store & các nhà phát hành
         const themes = {
             cyberpunk: {
                 primary: "#00f0ff",
                 secondary: "#ffe600",
-                image: "url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1920&auto=format&fit=crop')",
+                image: "url('https://image.api.playstation.com/vulcan/ap/rnd/202111/1910/T1i7u4i9a8r2n4n3s6g0x7l8.png')",
                 name: "Cyberpunk 2077"
             },
             gow: {
                 primary: "#ff3b30",
                 secondary: "#ffcc00",
-                image: "url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1920&auto=format&fit=crop')",
+                image: "url('https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/41457e504fa2d1945531d04cb536c4bda0c169d300eb009e.png')",
                 name: "God of War (Runic)"
             },
             sekiro: {
                 primary: "#ff8800",
                 secondary: "#e2e8f0",
-                image: "url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1920&auto=format&fit=crop')",
+                image: "url('https://image.api.playstation.com/vulcan/img/rnd/202010/2723/knqz1xyk7u2dso75f8w3r15t.png')",
                 name: "Sekiro: Shadows Die Twice"
             },
             witcher: {
                 primary: "#10b981",
                 secondary: "#94a3b8",
-                image: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop')",
+                image: "url('https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4gic8wjn9jd2fb4fg77cbf.png')",
                 name: "The Witcher 3 (Wolf)"
             }
         };
