@@ -4,14 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AUTO JAILBREAK PS4 - ULTIMATE MATRIX</title>
+    <title>HIỆP PS4 - QUANTUM MATRIX SYSTEM</title>
     <style>
         :root {
-            --tf-blue: #00f3ff;
+            --tf-cyan: #00f3ff;
             --tf-orange: #ff5500;
             --tf-yellow: #ffe600;
+            --tf-green: #00ff66;
             --tf-red: #ff003c;
-            --bg-deep: #020408;
+            --bg-deep: #010306;
         }
 
         * {
@@ -23,185 +24,202 @@
 
         body {
             background-color: var(--bg-deep);
-            /* Background hoành tráng: Hiệu ứng không gian vũ trụ kết hợp lưới năng lượng Cyberpunk */
-            background-image: 
-                radial-gradient(circle at 50% 30%, rgba(255, 85, 0, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at 10% 80%, rgba(0, 243, 255, 0.2) 0%, transparent 50%),
-                linear-gradient(rgba(0, 243, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.04) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Hiệu ứng quét màn hình phong cách Cyberpunk */
-        body::after {
-            content: " ";
-            display: block;
+        /* Hiệu ứng mưa mã nguồn nhẹ nhàng tối ưu riêng cho PS4 Browser */
+        #matrix-bg {
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 999;
-            background-size: 100% 3px, 3px 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--tf-cyan);
+            overflow: hidden;
+            line-height: 1;
+        }
+
+        /* Lớp phủ lưới chiến đấu & làm mờ không gian */
+        .overlay-grid {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 50% 40%, rgba(255, 85, 0, 0.15) 0%, transparent 70%);
+            background-size: 35px 35px, 35px 35px, 100% 100%;
+            z-index: 2;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 750px;
-            background: rgba(8, 12, 22, 0.9);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--tf-blue);
-            border-radius: 6px;
-            padding: 40px 35px;
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.35), 
-                        inset 0 0 30px rgba(255, 85, 0, 0.2);
+            max-width: 720px;
+            background: rgba(4, 8, 16, 0.94);
+            border: 2px solid var(--tf-cyan);
+            border-radius: 8px;
+            padding: 35px 30px;
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3), 
+                        inset 0 0 25px rgba(255, 85, 0, 0.15);
             position: relative;
-            /* Cấu trúc cắt góc Robot Transformer cực ngầu */
+            z-index: 10;
             clip-path: polygon(
-                0 25px, 25px 0, 
-                calc(100% - 25px) 0, 100% 25px, 
-                100% calc(100% - 25px), calc(100% - 25px) 100%, 
-                25px 100%, 0 calc(100% - 25px)
+                0 20px, 20px 0, 
+                calc(100% - 20px) 0, 100% 20px, 
+                100% calc(100% - 20px), calc(100% - 20px) 100%, 
+                20px 100%, 0 calc(100% - 20px)
             );
         }
 
-        /* Viền sáng năng lượng ma trận bao quanh */
+        /* Viền sáng năng lượng ma trận bao quanh khung */
         .container::before {
             content: "";
             position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
             border: 2px dashed var(--tf-orange);
             z-index: -1;
-            opacity: 0.7;
-            animation: matrixRotate 15s linear infinite;
+            opacity: 0.6;
+            animation: borderPulse 4s infinite alternate;
             clip-path: polygon(
-                0 25px, 25px 0, 
-                calc(100% - 25px) 0, 100% 25px, 
-                100% calc(100% - 25px), calc(100% - 25px) 100%, 
-                25px 100%, 0 calc(100% - 25px)
+                0 20px, 20px 0, 
+                calc(100% - 20px) 0, 100% 20px, 
+                100% calc(100% - 20px), calc(100% - 20px) 100%, 
+                20px 100%, 0 calc(100% - 20px)
             );
         }
 
-        @keyframes matrixRotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+        @keyframes borderPulse {
+            from { opacity: 0.3; filter: drop-shadow(0 0 2px var(--tf-orange)); }
+            to { opacity: 0.8; filter: drop-shadow(0 0 10px var(--tf-orange)); }
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 85, 0, 0.15);
+            border: 1px solid var(--tf-orange);
+            color: var(--tf-orange);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
         }
 
         .title {
             color: #fff;
-            text-align: center;
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 900;
-            letter-spacing: 2.5px;
-            margin-bottom: 8px;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--tf-blue), 0 0 25px var(--tf-blue), 0 0 40px var(--tf-blue);
+            text-shadow: 0 0 10px var(--tf-cyan), 0 0 20px var(--tf-cyan);
         }
 
         .subtitle {
-            color: var(--tf-orange);
-            text-align: center;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 35px;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--tf-orange), 0 0 20px var(--tf-orange);
+        }
+
+        .subtitle span {
+            color: var(--tf-yellow);
         }
 
         .row {
-            background: rgba(15, 23, 42, 0.85);
-            border-left: 6px solid var(--tf-blue);
-            border-right: 1px solid rgba(0, 243, 255, 0.3);
-            border-top: 1px solid rgba(0, 243, 255, 0.3);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 4px;
-            padding: 20px 25px;
-            margin-bottom: 16px;
+            background: rgba(12, 18, 32, 0.9);
+            border-left: 5px solid var(--tf-cyan);
+            border-right: 1px solid rgba(0, 243, 255, 0.2);
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 3px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 17px;
-            transition: all 0.3s ease;
         }
 
         .row:hover {
-            background: rgba(0, 243, 255, 0.12);
             border-left-color: var(--tf-orange);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-            transform: translateX(6px);
+            background: rgba(0, 243, 255, 0.08);
         }
 
         .label {
             color: #94a3b8;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+            font-size: 15px;
             text-transform: uppercase;
-            font-size: 16px;
         }
 
         .value {
             font-weight: 800;
-            text-align: right;
-            word-break: break-all;
             color: #fff;
-            font-size: 17px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            text-align: right;
+            text-shadow: 0 0 6px rgba(255,255,255,0.5);
         }
 
         .ok {
-            color: #00ff66;
-            text-shadow: 0 0 15px #00ff66;
+            color: var(--tf-green);
+            text-shadow: 0 0 10px var(--tf-green);
         }
 
         .bad {
             color: var(--tf-red);
-            text-shadow: 0 0 15px var(--tf-red);
+            text-shadow: 0 0 10px var(--tf-red);
         }
 
         .warn {
             color: var(--tf-yellow);
-            text-shadow: 0 0 15px var(--tf-yellow);
+            text-shadow: 0 0 10px var(--tf-yellow);
         }
 
         .loader-box {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
         }
 
         .mini-loader {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border: 3px solid rgba(255, 85, 0, 0.3);
             border-top-color: var(--tf-orange);
             border-radius: 50%;
-            animation: spin 0.7s infinite linear, pulseGlow 1s infinite alternate;
+            animation: spin 0.8s infinite linear;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        @keyframes pulseGlow {
-            from { box-shadow: 0 0 5px var(--tf-orange); }
-            to { box-shadow: 0 0 20px var(--tf-orange); }
-        }
     </style>
 </head>
 
 <body>
 
+    <div id="matrix-bg">HIỆP PS4 • 0982440044 • QUANTUM MATRIX • SYSTEM READY • JAILBREAK •</div>
+    <div class="overlay-grid"></div>
+
     <div class="container">
-        <div class="title">AUTOBOT JAILBREAK</div>
-        <div class="subtitle">SYSTEM 0982440044 • FW 5.05 - 13.52</div>
+        <div class="header-badge">ĐẶC QUYỀN HỆ THỐNG</div>
+        <div class="title">HIỆP PS4 JAILBREAK</div>
+        <div class="subtitle">HOTLINE: <span>0982440044</span> • HỖ TRỢ FW 5.05 - 13.52</div>
 
         <div class="row">
             <span class="label">FIRMWARE</span>
@@ -210,12 +228,12 @@
 
         <div class="row">
             <span class="label">TẢI TRỌNG</span>
-            <span class="value" style="color: var(--tf-blue);">GoldHEN v2.4b18.12</span>
+            <span class="value" style="color: var(--tf-cyan);">GoldHEN v2.4b18.12</span>
         </div>
 
         <div class="row">
             <span class="label">GIAO THỨC</span>
-            <span class="value">QUANTUM MATRIX v2.0</span>
+            <span class="value">QUANTUM MATRIX v3.0</span>
         </div>
 
         <div class="row">
@@ -223,13 +241,22 @@
             <span class="value" id="msgs">
                 <span class="loader-box">
                     <span class="mini-loader"></span>
-                    <span class="warn">Đang khởi chạy hệ thống...</span>
+                    <span class="warn">Đang khởi tạo ma trận...</span>
                 </span>
             </span>
         </div>
     </div>
 
     <script>
+        // Hiệu ứng chữ chạy nền nhẹ nhàng tối ưu cho WebKit của PS4
+        (function() {
+            var bg = document.getElementById('matrix-bg');
+            var text = "HIỆP PS4 • 0982440044 • PROTOCOL ACTIVE • SYSTEM ONLINE • ";
+            var content = "";
+            for(var i=0; i<15; i++) { content += text + "<br>"; }
+            bg.innerHTML = content;
+        })();
+
         (function () {
             var uaFull = navigator.userAgent;
             var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
