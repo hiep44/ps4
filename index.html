@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AUTO JAILBREAK PS4 -MUA BÁN TRAO ĐỔI PS4 0982440044</title>
+    <title>AUTO JAILBREAK PS4 - MUA BÁN PS4 GỌI 0982440044</title>
     <style>
         :root {
             --theme-primary: #00f0ff;
             --theme-secondary: #ffe600;
-            --bg-image: url('https://img.remit.ee/i/eiiWCmEyzP4T');
+            --bg-image: url('https://i.postimg.cc/Pfv3zVYh/wp15382470.jpg');
         }
 
         * {
@@ -17,13 +17,12 @@
             margin: 0;
             padding: 0;
             font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
         }
 
         body {
             background-color: #05080f;
-            /* Lớp phủ cực mỏng để ảnh nền game hiện lên sáng rõ, sắc nét */
-            background-image: linear-gradient(rgba(5, 8, 15, 0.35), rgba(5, 8, 15, 0.55)), var(--bg-image);
+            background-image: linear-gradient(rgba(5, 8, 15, 0.3), rgba(5, 8, 15, 0.5)), var(--bg-image);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -34,19 +33,23 @@
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            /* Tối ưu hóa hiệu năng GPU cho PS4 */
+            will-change: background-image;
+            transform: translateZ(0);
         }
 
         .container {
             width: 100%;
             max-width: 650px;
-            background: rgba(8, 15, 30, 0.82);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(8, 15, 30, 0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             border: 3px solid var(--theme-primary);
             border-radius: 10px;
             padding: 28px 24px;
-            box-shadow: 0 0 35px rgba(0, 0, 0, 0.9), 0 0 20px var(--theme-primary);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px var(--theme-primary);
             position: relative;
+            transform: translateZ(0);
         }
 
         .container::before {
@@ -54,7 +57,7 @@
             position: absolute;
             top: -3px; left: -3px; right: -3px; height: 4px;
             background: var(--theme-secondary);
-            box-shadow: 0 0 12px var(--theme-secondary);
+            box-shadow: 0 0 10px var(--theme-secondary);
         }
 
         .title {
@@ -203,7 +206,7 @@
     </div>
 
     <script>
-        // Cấu hình đúng chuẩn nguồn ảnh artwork từ PlayStation Store & các nhà phát hành
+        // Cấu hình thông tin và link ảnh của bro vào đây
         const themes = {
             cyberpunk: {
                 primary: "#00f0ff",
@@ -214,22 +217,48 @@
             gow: {
                 primary: "#ff3b30",
                 secondary: "#ffcc00",
-                image: "url('https://i.postimg.cc/3RBN0F1r/kratos-ghost-of-3840x2160-16038.jpg')",
+                image: "url('https://i.postimg.cc/bwkmcZLD/kratos-ghost-of-3840x2160-16038.jpg')",
                 name: "God of War (Runic)"
             },
             sekiro: {
                 primary: "#ff8800",
                 secondary: "#e2e8f0",
-                image: "url('https://i.postimg.cc/2SrzhZqW/sekiro-gameplay-overview-trailer-1-1200x450.jpg')",
+                image: "url('https://i.postimg.cc/0yDVRzZJ/sekiro-gameplay-overview-trailer-1-1200x450.jpg')",
                 name: "Sekiro: Shadows Die Twice"
             },
             witcher: {
                 primary: "#10b981",
                 secondary: "#94a3b8",
-                image: "url('https://i.postimg.cc/prHS4DMT/thumb-1920-587508.png')",
-                name: "The Witcher 3"
+                image: "url('https://i.postimg.cc/DwLxkS5r/thumb-1920-587508.png')",
+                name: "The Witcher 3 (Wolf)"
             }
         };
+
+        // Tự động Preload (tải ngầm) toàn bộ hình nền ngay từ đầu để chuyển game không bị khựng
+        window.addEventListener('DOMContentLoaded', () => {
+            Object.values(themes).forEach(t => {
+                const img = new Image();
+                const cleanUrl = t.image.replace(/url\(['"](.+)['"]\)/, '$1');
+                img.src = cleanUrl;
+            });
+
+            // Khôi phục chủ đề đã chọn lần trước
+            try {
+                const savedTheme = localStorage.getItem('ps4_preferred_theme');
+                if (savedTheme && themes[savedTheme]) {
+                    const btn = Array.from(document.querySelectorAll('.game-btn')).find(b => b.getAttribute('onclick').includes(savedTheme));
+                    if (btn) {
+                        document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const t = themes[savedTheme];
+                        document.documentElement.style.setProperty('--theme-primary', t.primary);
+                        document.documentElement.style.setProperty('--theme-secondary', t.secondary);
+                        document.documentElement.style.setProperty('--bg-image', t.image);
+                        document.getElementById('theme-name').textContent = t.name;
+                    }
+                }
+            } catch(e){}
+        });
 
         function setTheme(themeKey, evt) {
             const t = themes[themeKey];
@@ -249,26 +278,7 @@
             try { localStorage.setItem('ps4_preferred_theme', themeKey); } catch(e){}
         }
 
-        // Khôi phục chủ đề người dùng đã chọn lần trước
-        window.addEventListener('DOMContentLoaded', () => {
-            try {
-                const savedTheme = localStorage.getItem('ps4_preferred_theme');
-                if (savedTheme && themes[savedTheme]) {
-                    const btn = Array.from(document.querySelectorAll('.game-btn')).find(b => b.getAttribute('onclick').includes(savedTheme));
-                    if (btn) {
-                        document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        const t = themes[savedTheme];
-                        document.documentElement.style.setProperty('--theme-primary', t.primary);
-                        document.documentElement.style.setProperty('--theme-secondary', t.secondary);
-                        document.documentElement.style.setProperty('--bg-image', t.image);
-                        document.getElementById('theme-name').textContent = t.name;
-                    }
-                }
-            } catch(e){}
-        });
-
-        // Logic check Firmware & chạy Exploit gốc
+        // Logic check Firmware & chạy Exploit gốc của máy
         (function () {
             var uaFull = navigator.userAgent;
             var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
