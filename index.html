@@ -41,13 +41,14 @@
         .container {
             width: 100%;
             max-width: 650px;
-            background: rgba(8, 15, 30, 0.88);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            /* Giảm độ đục xuống còn 0.65 để thấy rõ background hơn */
+            background: rgba(8, 15, 30, 0.65);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border: 3px solid var(--theme-primary);
             border-radius: 10px;
             padding: 28px 24px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px var(--theme-primary);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--theme-primary);
             position: relative;
             transform: translateZ(0);
         }
@@ -91,7 +92,7 @@
         }
 
         .game-btn {
-            background: rgba(15, 25, 45, 0.9);
+            background: rgba(15, 25, 45, 0.6);
             border: 2px solid #1e3a8a;
             color: #93c5fd;
             padding: 10px 4px;
@@ -111,11 +112,12 @@
         }
 
         .row {
-            background: rgba(12, 22, 40, 0.85);
+            /* Giảm độ đục của các dòng thông tin */
+            background: rgba(12, 22, 40, 0.6);
             border-left: 6px solid var(--theme-primary);
-            border-top: 1px solid rgba(30, 58, 138, 0.6);
-            border-right: 1px solid rgba(30, 58, 138, 0.6);
-            border-bottom: 1px solid rgba(30, 58, 138, 0.6);
+            border-top: 1px solid rgba(30, 58, 138, 0.4);
+            border-right: 1px solid rgba(30, 58, 138, 0.4);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.4);
             border-radius: 4px;
             padding: 14px 18px;
             margin-bottom: 12px;
@@ -141,7 +143,7 @@
 
         /* Khung Cảnh Báo Rủi Ro */
         .warning-box {
-            background: rgba(255, 59, 48, 0.12);
+            background: rgba(255, 59, 48, 0.15);
             border: 1px solid rgba(255, 59, 48, 0.4);
             border-left: 6px solid #ff3b30;
             border-radius: 4px;
@@ -280,7 +282,6 @@
     </div>
 
     <script>
-        // Cấu hình thông tin và link ảnh của bro
         const themes = {
             cyberpunk: {
                 primary: "#00f0ff",
@@ -308,7 +309,6 @@
             }
         };
 
-        // Tự động Preload (tải ngầm) toàn bộ hình nền ngay từ đầu để chuyển game không bị khựng
         window.addEventListener('DOMContentLoaded', () => {
             Object.values(themes).forEach(t => {
                 const img = new Image();
@@ -316,7 +316,6 @@
                 img.src = cleanUrl;
             });
 
-            // Khôi phục chủ đề đã chọn lần trước
             try {
                 const savedTheme = localStorage.getItem('ps4_preferred_theme');
                 if (savedTheme && themes[savedTheme]) {
@@ -333,18 +332,15 @@
                 }
             } catch(e){}
 
-            // Xử lý bộ đếm số lượng người tham gia truy cập hàng ngày (70 ~ 100 lượt)
             initVisitorCounter();
-
             initCheckEnvironment();
         });
 
         function initVisitorCounter() {
             try {
-                const today = new Date().toISOString().slice(0, 10); // Lấy định dạng ngày: YYYY-MM-DD
+                const today = new Date().toISOString().slice(0, 10);
                 let storedData = JSON.parse(localStorage.getItem('ps4_daily_visitors') || '{}');
 
-                // Nếu sang ngày mới hoặc chưa có dữ liệu, tạo ngẫu nhiên từ 70 đến 100
                 if (storedData.date !== today) {
                     const randomCount = Math.floor(Math.random() * (100 - 70 + 1)) + 70;
                     storedData = {
@@ -356,7 +352,6 @@
 
                 document.getElementById('visitor-count').textContent = storedData.count + " lượt truy cập";
             } catch (e) {
-                // Fallback nếu localStorage bị chặn
                 document.getElementById('visitor-count').textContent = "85 lượt truy cập";
             }
         }
@@ -382,7 +377,6 @@
         var globalFwNum = 0;
         var isPS4Valid = false;
 
-        // Kiểm tra phần cứng và firmware
         function initCheckEnvironment() {
             var uaFull = navigator.userAgent;
             var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
@@ -422,7 +416,6 @@
             }
         }
 
-        // Hàm thực thi khi người dùng bấm nút Jailbreak thủ công
         function startJailbreak() {
             if (!isPS4Valid) return;
 
