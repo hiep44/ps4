@@ -41,8 +41,8 @@
         .container {
             width: 100%;
             max-width: 650px;
-            /* Giảm độ đục xuống còn 0.65 để thấy rõ background hơn */
-            background: rgba(8, 15, 30, 0.65);
+            /* Tăng độ trong suốt (giảm độ đục xuống 0.45) để thấy rõ background */
+            background: rgba(8, 15, 30, 0.45);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 3px solid var(--theme-primary);
@@ -92,7 +92,7 @@
         }
 
         .game-btn {
-            background: rgba(15, 25, 45, 0.6);
+            background: rgba(15, 25, 45, 0.4);
             border: 2px solid #1e3a8a;
             color: #93c5fd;
             padding: 10px 4px;
@@ -105,19 +105,19 @@
         }
 
         .game-btn.active, .game-btn:hover {
-            background: rgba(0, 240, 255, 0.25);
+            background: rgba(0, 240, 255, 0.3);
             border-color: var(--theme-primary);
             color: #ffffff;
             box-shadow: 0 0 12px var(--theme-primary);
         }
 
         .row {
-            /* Giảm độ đục của các dòng thông tin */
-            background: rgba(12, 22, 40, 0.6);
+            /* Tăng độ trong suốt cho các dòng thông tin (độ đục 0.4) */
+            background: rgba(12, 22, 40, 0.4);
             border-left: 6px solid var(--theme-primary);
-            border-top: 1px solid rgba(30, 58, 138, 0.4);
-            border-right: 1px solid rgba(30, 58, 138, 0.4);
-            border-bottom: 1px solid rgba(30, 58, 138, 0.4);
+            border-top: 1px solid rgba(30, 58, 138, 0.3);
+            border-right: 1px solid rgba(30, 58, 138, 0.3);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.3);
             border-radius: 4px;
             padding: 14px 18px;
             margin-bottom: 12px;
