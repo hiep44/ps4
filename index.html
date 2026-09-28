@@ -261,6 +261,12 @@
             <span class="value" id="msgs">Đang kiểm tra hệ thống...</span>
         </div>
 
+        <!-- Bộ đếm truy cập hàng ngày -->
+        <div class="row">
+            <span class="label">Truy cập hôm nay</span>
+            <span class="value" id="visitor-count" style="color: var(--theme-secondary);">Đang cập nhật...</span>
+        </div>
+
         <!-- Khung Cảnh Báo -->
         <div class="warning-box">
             <div class="warning-title">⚠️ Cảnh báo quan trọng</div>
@@ -327,8 +333,33 @@
                 }
             } catch(e){}
 
+            // Xử lý bộ đếm số lượng người tham gia truy cập hàng ngày (70 ~ 100 lượt)
+            initVisitorCounter();
+
             initCheckEnvironment();
         });
+
+        function initVisitorCounter() {
+            try {
+                const today = new Date().toISOString().slice(0, 10); // Lấy định dạng ngày: YYYY-MM-DD
+                let storedData = JSON.parse(localStorage.getItem('ps4_daily_visitors') || '{}');
+
+                // Nếu sang ngày mới hoặc chưa có dữ liệu, tạo ngẫu nhiên từ 70 đến 100
+                if (storedData.date !== today) {
+                    const randomCount = Math.floor(Math.random() * (100 - 70 + 1)) + 70;
+                    storedData = {
+                        date: today,
+                        count: randomCount
+                    };
+                    localStorage.setItem('ps4_daily_visitors', JSON.stringify(storedData));
+                }
+
+                document.getElementById('visitor-count').textContent = storedData.count + " lượt truy cập";
+            } catch (e) {
+                // Fallback nếu localStorage bị chặn
+                document.getElementById('visitor-count').textContent = "85 lượt truy cập";
+            }
+        }
 
         function setTheme(themeKey, evt) {
             const t = themes[themeKey];
