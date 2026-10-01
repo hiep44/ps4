@@ -17,38 +17,31 @@
             margin: 0;
             padding: 0;
             font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
         }
 
         body {
             background-color: #05080f;
-            background-image: linear-gradient(rgba(5, 8, 15, 0.3), rgba(5, 8, 15, 0.5)), var(--bg-image);
+            background-image: linear-gradient(rgba(5, 8, 15, 0.4), rgba(5, 8, 15, 0.6)), var(--bg-image);
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 20px;
             overflow-x: hidden;
-            /* Tối ưu hóa hiệu năng GPU cho PS4 */
-            will-change: background-image;
-            transform: translateZ(0);
+            transform: translateZ(0); /* Kích hoạt tăng tốc phần cứng GPU */
         }
 
         .container {
             width: 100%;
-            max-width: 650px;
-            /* Tăng độ trong suốt (giảm độ đục xuống 0.45) để thấy rõ background */
-            background: rgba(8, 15, 30, 0.45);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            max-width: 800px; /* Tăng từ 650px lên 800px để vừa vặn, đẹp mắt hơn trên TV 50"+ */
+            background: rgba(8, 15, 30, 0.75); /* Thay backdrop-filter blur bằng độ đục 0.75 để mượt 100% trên PS4 */
             border: 3px solid var(--theme-primary);
             border-radius: 10px;
-            padding: 28px 24px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--theme-primary);
+            padding: 32px 28px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px var(--theme-primary);
             position: relative;
             transform: translateZ(0);
         }
@@ -64,10 +57,10 @@
         .title {
             color: #ffffff;
             text-align: center;
-            font-size: 24px;
+            font-size: 30px; /* Tăng kích thước font chữ cho khoảng cách nhìn TV */
             font-weight: 900;
             letter-spacing: 2px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             text-shadow: 0 0 10px var(--theme-primary);
         }
@@ -75,10 +68,10 @@
         .subtitle {
             color: var(--theme-secondary);
             text-align: center;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             text-transform: uppercase;
             text-shadow: 0 0 8px var(--theme-secondary);
         }
@@ -87,21 +80,22 @@
         .game-picker {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 22px;
         }
 
         .game-btn {
-            background: rgba(15, 25, 45, 0.4);
+            background: rgba(15, 25, 45, 0.6);
             border: 2px solid #1e3a8a;
             color: #93c5fd;
-            padding: 10px 4px;
-            font-size: 11px;
+            padding: 12px 6px;
+            font-size: 13px;
             font-weight: 800;
             text-align: center;
             border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
+            transition: background 0.15s ease, border-color 0.15s ease;
         }
 
         .game-btn.active, .game-btn:hover {
@@ -112,19 +106,18 @@
         }
 
         .row {
-            /* Tăng độ trong suốt cho các dòng thông tin (độ đục 0.4) */
-            background: rgba(12, 22, 40, 0.4);
+            background: rgba(12, 22, 40, 0.6);
             border-left: 6px solid var(--theme-primary);
             border-top: 1px solid rgba(30, 58, 138, 0.3);
             border-right: 1px solid rgba(30, 58, 138, 0.3);
             border-bottom: 1px solid rgba(30, 58, 138, 0.3);
             border-radius: 4px;
-            padding: 14px 18px;
+            padding: 16px 20px;
             margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 15px;
+            font-size: 17px; /* Tăng độ to chữ hàng hiển thị thông tin */
         }
 
         .label {
@@ -143,13 +136,13 @@
 
         /* Khung Cảnh Báo Rủi Ro */
         .warning-box {
-            background: rgba(255, 59, 48, 0.15);
+            background: rgba(255, 59, 48, 0.2);
             border: 1px solid rgba(255, 59, 48, 0.4);
             border-left: 6px solid #ff3b30;
             border-radius: 4px;
-            padding: 12px 16px;
-            margin-bottom: 16px;
-            font-size: 13px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            font-size: 14px;
             line-height: 1.5;
             color: #fca5a5;
         }
@@ -163,6 +156,7 @@
             align-items: center;
             gap: 6px;
             text-shadow: 0 0 6px rgba(255, 59, 48, 0.5);
+            font-size: 15px;
         }
 
         /* Nút Jailbreak thủ công (Manual Trigger) */
@@ -175,24 +169,18 @@
             background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
             color: #05080f;
             border: none;
-            padding: 16px;
-            font-size: 16px;
+            padding: 18px;
+            font-size: 18px;
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
             border-radius: 6px;
             cursor: pointer;
             box-shadow: 0 0 20px var(--theme-primary);
-            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
         .jb-btn:hover {
             opacity: 0.9;
-            transform: scale(1.01);
-        }
-
-        .jb-btn:active {
-            transform: scale(0.98);
         }
 
         .jb-btn:disabled {
@@ -200,7 +188,6 @@
             color: #94a3b8;
             cursor: not-allowed;
             box-shadow: none;
-            transform: none;
         }
 
         .ok { color: #00ff66; text-shadow: 0 0 8px #00ff66; }
@@ -214,8 +201,8 @@
         }
 
         .mini-loader {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border: 3px solid rgba(255, 119, 0, 0.3);
             border-top-color: var(--theme-secondary);
             border-radius: 50%;
@@ -235,7 +222,7 @@
         <div class="title" id="launcher-title">AUTO JAILBREAK PS4</div>
         <div class="subtitle" id="launcher-subtitle">0982440044 • MUA BÁN TRAO ĐỔI PLAYSTATION 4</div>
 
-        <!-- Khung chọn game -->
+        <!-- Khung chọn game AAA -->
         <div class="game-picker">
             <button class="game-btn active" onclick="setTheme('cyberpunk', event)">Cyberpunk</button>
             <button class="game-btn" onclick="setTheme('gow', event)">God of War</button>
@@ -282,6 +269,7 @@
     </div>
 
     <script>
+        // GIỮ NGUYÊN 100% TẤT CẢ ẢNH VÀ THEME GỐC CỦA BẠN
         const themes = {
             cyberpunk: {
                 primary: "#00f0ff",
