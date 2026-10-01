@@ -92,6 +92,7 @@
             gap: 15px;
             color: #ffffff;
             line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .spinner {
@@ -102,6 +103,47 @@
             border-radius: 50%;
             flex-shrink: 0;
             animation: spin 0.8s infinite linear;
+        }
+
+        /* Khung Progress Bar */
+        .progress-box {
+            background: rgba(10, 16, 28, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 800;
+            color: #93c5fd;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .countdown-text {
+            color: var(--tf-orange);
+            text-shadow: 0 0 6px var(--tf-orange);
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--tf-cyan), var(--tf-orange));
+            box-shadow: 0 0 10px var(--tf-cyan);
+            border-radius: 6px;
+            transition: width 0.1s linear;
         }
 
         @keyframes spin {
@@ -115,11 +157,50 @@
     <div class="container">
         <div class="title">HIỆP PS4 • ADVANCED FW</div>
         <div class="sub">HOTLINE: 0982440044</div>
+        
         <div class="status">
             <div class="spinner"></div>
             <span id="msgs">Firmware cao từ 11.02 đến 13.52 có tỷ lệ kick thành công là 85% . Chúc bạn may mắn</span>
         </div>
+
+        <div class="progress-box">
+            <div class="progress-info">
+                <span>TIẾN TRÌNH KHAI THÁC: <span id="percent-text" style="color: var(--tf-cyan);">0%</span></span>
+                <span class="countdown-text">DỰ KIẾN: <span id="timer-text">25</span>S</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
     </div>
+
+    <!-- Đoạn đếm ngược tùy chỉnh 25s cho Slopkit -->
+    <script>
+        (function() {
+            var totalSeconds = 25; // Thay đổi số giây ở đây nếu muốn (ví dụ 20, 25 hoặc 30)
+            var currentMs = 0;
+            var totalMs = totalSeconds * 1000;
+            var intervalMs = 100;
+
+            var fillEl = document.getElementById('progress-fill');
+            var percentEl = document.getElementById('percent-text');
+            var timerEl = document.getElementById('timer-text');
+
+            var progressInterval = setInterval(function() {
+                currentMs += intervalMs;
+                var percentage = Math.min(Math.round((currentMs / totalMs) * 100), 100);
+                var secondsLeft = Math.max(Math.ceil((totalMs - currentMs) / 1000), 0);
+
+                if (fillEl) fillEl.style.width = percentage + '%';
+                if (percentEl) percentEl.textContent = percentage + '%';
+                if (timerEl) timerEl.textContent = secondsLeft;
+
+                if (currentMs >= totalMs) {
+                    clearInterval(progressInterval);
+                }
+            }, intervalMs);
+        })();
+    </script>
 
     <script src="slopkit/jb.js?v=10" type="module"></script>
 </body>
