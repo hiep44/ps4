@@ -1,318 +1,44 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HIỆP PS4 - JAILBREAK MATRIX HOST</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 AUTO HOST SELECTOR</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: #070a12;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 760px;
-            background: rgba(12, 18, 32, 0.95);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-            padding: 30px 25px;
-            text-align: center;
-            position: relative;
-        }
-
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00f0ff, transparent);
-        }
-
-        .header-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #00f0ff;
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 4px 10px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: #00f0ff;
-            border-radius: 50%;
-        }
-
-        .title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 3px;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .sub {
-            color: #ffcc00;
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        /* Khung báo Auto Redirect & Thanh Progress Bar */
-        .auto-banner {
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid #00f0ff;
-            color: #ffffff;
-            padding: 14px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        .banner-text {
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #00f0ff, #ffcc00);
-        }
-
-        .menu-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .btn-fw {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-left: 4px solid #00f0ff;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: #ffffff;
-            transition: background 0.15s ease, border-color 0.15s ease;
-            cursor: pointer;
-        }
-
-        .btn-fw.detected {
-            border-color: #ffcc00;
-            border-left-color: #ffcc00;
-            background: rgba(255, 204, 0, 0.15);
-        }
-
-        .btn-fw-title {
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: #ffffff;
-            text-align: left;
-        }
-
-        .btn-fw-desc {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 2px;
-            font-weight: 600;
-        }
-
-        .btn-fw-badge {
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 8px;
-            background: rgba(255, 230, 0, 0.1);
-            color: #ffcc00;
-            border: 1px solid rgba(255, 230, 0, 0.3);
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        .footer-info {
-            background: rgba(5, 10, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px;
-            font-size: 12px;
-            color: #94a3b8;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+        body { background: #0b0e14; color: #fff; font-family: sans-serif; text-align: center; padding-top: 20vh; }
+        h1 { color: #0088ff; }
+        .msg { font-size: 18px; color: #8c9ba5; margin-top: 10px; }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="header-tag"><span class="dot"></span> MATRIX HOST SELECTOR</div>
-        <div class="title">HIỆP PS4 • EXPLOIT HOST</div>
-        <div class="sub">HOTLINE: 0982440044</div>
-
-        <!-- Khung hiển thị tự động nhận diện & đếm % -->
-        <div id="auto-banner" class="auto-banner">
-            <div class="banner-text">
-                Hệ thống sẽ tự động chọn lựa phiên bản Hack cho bạn (FW <span id="fw-detected-text" style="color: #ffcc00;">--</span>)!<br>
-                TỰ ĐỘNG CHUYỂN HƯỚNG: <span id="percent-text" style="color: #00f0ff;">0%</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-            </div>
-        </div>
-
-        <div class="menu-grid">
-            <a href="cache505.html" id="btn-505" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 5.05 - 5.07</div>
-                    <div class="btn-fw-desc">Ultra Stable / GoldHEN WebKit Payload</div>
-                </div>
-                <div class="btn-fw-badge">STABLE</div>
-            </a>
-
-            <a href="cache700.html" id="btn-700" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 6.72 - 7.55</div>
-                    <div class="btn-fw-desc">Old Firmware WebKit Exploit</div>
-                </div>
-                <div class="btn-fw-badge">AUTO JB</div>
-            </a>
-
-            <a href="cache900.html" id="btn-900" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 9.00 - 9.60</div>
-                    <div class="btn-fw-desc">Exfathax / GoldHEN USB Auto Payload</div>
-                </div>
-                <div class="btn-fw-badge">POPULAR</div>
-            </a>
-
-            <a href="cachecss.html" id="btn-css" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 10.00 - 11.02</div>
-                    <div class="btn-fw-desc">PPPwn / CSS WebKit Exploit Execution</div>
-                </div>
-                <div class="btn-fw-badge">AUTO JB</div>
-            </a>
-
-            <a href="cacheslopkit.html" id="btn-slopkit" class="btn-fw" style="border-left-color: #ffcc00;">
-                <div>
-                    <div class="btn-fw-title">FW 11.02 - 13.52 (SLOPKIT)</div>
-                    <div class="btn-fw-desc">Quantum Slopkit WebKit Execution</div>
-                </div>
-                <div class="btn-fw-badge" style="color: #00f0ff; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.1);">ADVANCED</div>
-            </a>
-        </div>
-
-        <div class="footer-info">
-            VUI LÒNG CHỌN ĐÚNG PHIÊN BẢN FIRMWARE CỦA MÁY PS4
-        </div>
-    </div>
+    <h1>ĐANG KIỂM TRA PHIÊN BẢN FIRMWARE...</h1>
+    <div class="msg" id="msg">Vui lòng chờ trong giây lát...</div>
 
     <script>
-        window.addEventListener("DOMContentLoaded", function () {
-            var ua = navigator.userAgent;
-            var fw = null;
+        var ua = navigator.userAgent;
+        var msg = document.getElementById('msg');
 
-            // Bắt chuỗi FW linh hoạt cho mọi dòng PS4
-            var match = ua.match(/PlayStation\s*4[\s\/]+([0-9\.]+)/i);
-            if (match && match[1]) {
-                fw = parseFloat(match[1]);
-            } else if (ua.indexOf("PlayStation 4") !== -1) {
-                // Phương án dự phòng nếu gặp chuỗi lạ
-                var idx = ua.indexOf("PlayStation 4");
-                fw = parseFloat(ua.substring(idx + 14, idx + 19));
+        // Nhận diện FW qua UserAgent của PS4 Browser
+        if (ua.indexOf("PlayStation 4") !== -1) {
+            if (ua.indexOf("5.05") !== -1) {
+                msg.textContent = "Phát hiện FW 5.05 - Đang chuyển hướng...";
+                setTimeout(() => { window.location.href = "cache505.html"; }, 1000);
+            } else if (ua.indexOf("7.00") !== -1 || ua.indexOf("7.02") !== -1 || ua.indexOf("7.55") !== -1) {
+                msg.textContent = "Phát hiện FW 7.xx - Đang chuyển hướng...";
+                setTimeout(() => { window.location.href = "cache700.html"; }, 1000);
+            } else if (ua.indexOf("9.00") !== -1) {
+                msg.textContent = "Phát hiện FW 9.00 - Đang chuyển hướng...";
+                setTimeout(() => { window.location.href = "cache900.html"; }, 1000);
+            } else if (ua.indexOf("11.00") !== -1 || ua.indexOf("13.52") !== -1) {
+                msg.textContent = "Phát hiện FW cao (PPPwn / Slopkit) - Đang chuyển hướng...";
+                setTimeout(() => { window.location.href = "cacheslopkit.html"; }, 1000);
+            } else {
+                msg.textContent = "Phát hiện FW 9.xx/CSS - Đang chuyển hướng...";
+                setTimeout(() => { window.location.href = "cachecss.html"; }, 1000);
             }
-
-            // Nếu không quét được FW (hoặc mở trên PC/Điện thoại), kết thúc không chạy đếm
-            if (!fw || isNaN(fw)) return;
-
-            var targetUrl = "";
-            var targetBtnId = "";
-
-            if (fw <= 5.07) {
-                targetUrl = "cache505.html";
-                targetBtnId = "btn-505";
-            } else if (fw <= 7.55) {
-                targetUrl = "cache700.html";
-                targetBtnId = "btn-700";
-            } else if (fw <= 9.60) {
-                targetUrl = "cache900.html";
-                targetBtnId = "btn-900";
-            } else if (fw <= 11.02) {
-                targetUrl = "cachecss.html";
-                targetBtnId = "btn-css";
-            } else if (fw <= 13.52) {
-                targetUrl = "cacheslopkit.html";
-                targetBtnId = "btn-slopkit";
-            }
-
-            if (targetUrl) {
-                var banner = document.getElementById("auto-banner");
-                var fwText = document.getElementById("fw-detected-text");
-                var percentText = document.getElementById("percent-text");
-                var fillEl = document.getElementById("progress-fill");
-                var btn = document.getElementById(targetBtnId);
-
-                if (banner) banner.style.display = "block";
-                if (fwText) fwText.textContent = fw.toFixed(2);
-                if (btn) btn.classList.add("detected");
-
-                // Đếm ngược 100% trong 10 giây
-                var totalMs = 10000;
-                var currentMs = 0;
-                var intervalMs = 200;
-
-                var progressInterval = setInterval(function () {
-                    currentMs += intervalMs;
-                    var percentage = Math.min(Math.round((currentMs / totalMs) * 100), 100);
-
-                    if (fillEl) fillEl.style.width = percentage + "%";
-                    if (percentText) percentText.textContent = percentage + "%";
-
-                    if (currentMs >= totalMs) {
-                        clearInterval(progressInterval);
-                        window.location.href = targetUrl;
-                    }
-                }, intervalMs);
-            }
-        });
+        } else {
+            msg.textContent = "Bạn đang truy cập từ Máy tính/Điện thoại. Hãy mở trang này bằng Trình duyệt PS4.";
+        }
     </script>
 </body>
-
 </html>
