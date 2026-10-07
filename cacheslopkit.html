@@ -1,212 +1,232 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html manifest="slopkit.manifest">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HIỆP PS4 - QUANTUM SLOPKIT</title>
-    <style>
-        :root {
-            --neon-cyan: #00f0ff;
-            --neon-gold: #ffcc00;
-            --bg-dark: #070a12;
-            --panel-bg: rgba(12, 18, 32, 0.95);
-            --border-color: rgba(0, 240, 255, 0.3);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CYBER EXPLOIT CORE - CACHE 1150</title>
+  <style>
+    :root {
+      --sc-bg: #04060a;
+      --sc-panel: rgba(10, 16, 26, 0.9);
+      --sc-cyan: #00f0ff;
+      --sc-pink: #ff0055;
+      --sc-yellow: #ffe600;
+      --sc-dim: #3a4a63;
+      --sc-red: #ff2255;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-            overflow: hidden;
-        }
+    body {
+      background-color: var(--sc-bg);
+      color: var(--sc-cyan);
+      font-family: 'Consolas', 'Courier New', monospace;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      transform: translateZ(0); /* Tối ưu GPU cho WebKit PS4 */
+    }
 
-        /* Card Khung HUD Sci-Fi Vát Góc */
-        .container {
-            width: 100%;
-            max-width: 680px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            /* Vát 4 góc kiểu Tech/Console UI */
-            clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-            padding: 30px 25px;
-            text-align: center;
-            position: relative;
-            transform: translateZ(0);
-        }
+    /* KHUNG ĐIỀU KHIỂN HOLOGRAM */
+    .hud-core {
+      width: 100%;
+      max-width: 660px;
+      background: var(--sc-panel);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.1);
+      position: relative;
+    }
 
-        /* Viền sáng mỏng phía trên */
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        }
+    .hud-core::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
+    }
 
-        /* Header Bar */
-        .header-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 4px 10px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
+    /* BANNER TIÊU ĐỀ */
+    .hud-header {
+      background: rgba(0, 240, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--neon-cyan);
-            border-radius: 50%;
-        }
+    .hud-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--sc-yellow);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+    }
 
-        .title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 3px;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
+    .hud-hotline {
+      font-size: 11px;
+      color: var(--sc-cyan);
+      border: 1px solid var(--sc-cyan);
+      padding: 3px 8px;
+      letter-spacing: 1px;
+      background: rgba(0, 240, 255, 0.1);
+    }
 
-        .sub {
-            color: var(--neon-gold);
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 22px;
-            letter-spacing: 2px;
-        }
+    .hud-body {
+      padding: 20px;
+    }
 
-        /* Khung Status Nhìn như Terminal */
-        .status {
-            background: rgba(5, 10, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-left: 3px solid var(--neon-cyan);
-            padding: 14px 16px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #d1d5db;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* BẢNG MODULE THÔNG TIN */
+    .module-grid {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
 
-        .status-icon {
-            color: var(--neon-cyan);
-            font-size: 16px;
-        }
+    .module-box {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-left: 3px solid var(--sc-pink);
+      padding: 10px 12px;
+    }
 
-        /* Khung Progress Bar Sang Trọng */
-        .progress-box {
-            background: rgba(5, 10, 20, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 14px;
-        }
+    .module-tag {
+      font-size: 10px;
+      color: var(--sc-dim);
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #94a3b8;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
+    .module-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
 
-        .val-cyan { color: var(--neon-cyan); }
-        .val-gold { color: var(--neon-gold); }
+    /* MÀN HÌNH STATUS TERMINAL */
+    .terminal-box {
+      background: #020305;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      padding: 16px;
+      margin-bottom: 15px;
+      position: relative;
+    }
 
-        .progress-bar-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            position: relative;
-        }
+    .terminal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 10px;
+      color: var(--sc-cyan);
+      letter-spacing: 1px;
+    }
 
-        .progress-bar-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-gold));
-            transition: width 0.25s linear;
-        }
-    </style>
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--sc-yellow);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--sc-yellow);
+    }
+
+    .terminal-output {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      min-height: 22px;
+      letter-spacing: 0.5px;
+    }
+
+    .scan-line {
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 240, 255, 0.15);
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scan-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
+    }
+
+    /* CẢNH BÁO CHẾ ĐỘ OFFLINE */
+    .alert-hud {
+      background: rgba(255, 230, 0, 0.03);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+      border-left: 4px solid var(--sc-yellow);
+      padding: 12px 15px;
+      font-size: 11px;
+      color: var(--sc-yellow);
+      line-height: 1.6;
+    }
+
+    .alert-hud span {
+      color: var(--sc-pink);
+      font-weight: 800;
+    }
+
+    /* FOOTER */
+    .hud-footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--sc-dim);
+    }
+
+    .hud-footer a {
+      color: var(--sc-pink);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hud-footer a:hover {
+      color: var(--sc-yellow);
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header-tag"><span class="dot"></span> MATRIX SYSTEM ONLINE</div>
-        <div class="title">HIỆP PS4 • ADVANCED FW</div>
-        <div class="sub">HOTLINE: 0982440044</div>
-        
-        <div class="status">
-            <span class="status-icon">❖</span>
-            <span id="msgs">Firmware 11.02 - 13.52: Tỉ lệ kick thành công 85%. Chúc bạn may mắn!</span>
-        </div>
 
-        <div class="progress-box">
-            <div class="progress-info">
-                <span>TIẾN TRÌNH KHAI THÁC: <span id="percent-text" class="val-cyan">0%</span></span>
-                <span>DỰ KIẾN: <span id="timer-text" class="val-gold">25</span>S</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-            </div>
-        </div>
-    </div>
+  <script>
+    history.replaceState(null, null, 'index.html');
+    var histlength = history.length;
+    history.go(-histlength);
 
-    <!-- Đoạn đếm ngược 25s tối ưu cho Slopkit -->
-    <script>
-        (function() {
-            var totalSeconds = 25;
-            var currentMs = 0;
-            var totalMs = totalSeconds * 1000;
-            var intervalMs = 250;
+    function DLProgress(e) {
+      Percent = (Math.round(e.loaded / e.total * 100));
+      window.msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%";
+    }
 
-            var fillEl = document.getElementById('progress-fill');
-            var percentEl = document.getElementById('percent-text');
-            var timerEl = document.getElementById('timer-text');
-
-            var progressInterval = setInterval(function() {
-                currentMs += intervalMs;
-                var percentage = Math.min(Math.round((currentMs / totalMs) * 100), 100);
-                var secondsLeft = Math.max(Math.ceil((totalMs - currentMs) / 1000), 0);
-
-                if (fillEl) fillEl.style.width = percentage + '%';
-                if (percentEl) percentEl.textContent = percentage + '%';
-                if (timerEl) timerEl.textContent = secondsLeft;
-
-                if (currentMs >= totalMs) {
-                    clearInterval(progressInterval);
-                }
-            }, intervalMs);
-        })();
-    </script>
-
-    <script src="slopkit/jb.js?v=10" type="module"></script>
-</body>
-
-</html>
+    function DisplayCacheProgress() {
+      window.msgs.innerHTML = "Đã cài đặt Cache thành công ✔";
+      setTimeout(function () {
+        window.msgs.innerHTML =
