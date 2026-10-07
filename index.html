@@ -34,7 +34,6 @@
             padding: 30px 25px;
             text-align: center;
             position: relative;
-            transform: translateZ(0);
         }
 
         .container::before {
@@ -114,7 +113,6 @@
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, #00f0ff, #ffcc00);
-            transition: width 0.2s linear;
         }
 
         .menu-grid {
@@ -188,6 +186,133 @@
         <div class="title">HIỆP PS4 • EXPLOIT HOST</div>
         <div class="sub">HOTLINE: 0982440044</div>
 
-        <!-- Thông báo tự động lựa chọn & Đếm % -->
+        <!-- Khung hiển thị tự động nhận diện & đếm % -->
         <div id="auto-banner" class="auto-banner">
             <div class="banner-text">
+                Hệ thống sẽ tự động chọn lựa phiên bản Hack cho bạn (FW <span id="fw-detected-text" style="color: #ffcc00;">--</span>)!<br>
+                TỰ ĐỘNG CHUYỂN HƯỚNG: <span id="percent-text" style="color: #00f0ff;">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <a href="cache505.html" id="btn-505" class="btn-fw">
+                <div>
+                    <div class="btn-fw-title">FW 5.05 - 5.07</div>
+                    <div class="btn-fw-desc">Ultra Stable / GoldHEN WebKit Payload</div>
+                </div>
+                <div class="btn-fw-badge">STABLE</div>
+            </a>
+
+            <a href="cache700.html" id="btn-700" class="btn-fw">
+                <div>
+                    <div class="btn-fw-title">FW 6.72 - 7.55</div>
+                    <div class="btn-fw-desc">Old Firmware WebKit Exploit</div>
+                </div>
+                <div class="btn-fw-badge">AUTO JB</div>
+            </a>
+
+            <a href="cache900.html" id="btn-900" class="btn-fw">
+                <div>
+                    <div class="btn-fw-title">FW 9.00 - 9.60</div>
+                    <div class="btn-fw-desc">Exfathax / GoldHEN USB Auto Payload</div>
+                </div>
+                <div class="btn-fw-badge">POPULAR</div>
+            </a>
+
+            <a href="cachecss.html" id="btn-css" class="btn-fw">
+                <div>
+                    <div class="btn-fw-title">FW 10.00 - 11.02</div>
+                    <div class="btn-fw-desc">PPPwn / CSS WebKit Exploit Execution</div>
+                </div>
+                <div class="btn-fw-badge">AUTO JB</div>
+            </a>
+
+            <a href="cacheslopkit.html" id="btn-slopkit" class="btn-fw" style="border-left-color: #ffcc00;">
+                <div>
+                    <div class="btn-fw-title">FW 11.02 - 13.52 (SLOPKIT)</div>
+                    <div class="btn-fw-desc">Quantum Slopkit WebKit Execution</div>
+                </div>
+                <div class="btn-fw-badge" style="color: #00f0ff; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.1);">ADVANCED</div>
+            </a>
+        </div>
+
+        <div class="footer-info">
+            VUI LÒNG CHỌN ĐÚNG PHIÊN BẢN FIRMWARE CỦA MÁY PS4
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            var ua = navigator.userAgent;
+            var fw = null;
+
+            // Bắt chuỗi FW linh hoạt cho mọi dòng PS4
+            var match = ua.match(/PlayStation\s*4[\s\/]+([0-9\.]+)/i);
+            if (match && match[1]) {
+                fw = parseFloat(match[1]);
+            } else if (ua.indexOf("PlayStation 4") !== -1) {
+                // Phương án dự phòng nếu gặp chuỗi lạ
+                var idx = ua.indexOf("PlayStation 4");
+                fw = parseFloat(ua.substring(idx + 14, idx + 19));
+            }
+
+            // Nếu không quét được FW (hoặc mở trên PC/Điện thoại), kết thúc không chạy đếm
+            if (!fw || isNaN(fw)) return;
+
+            var targetUrl = "";
+            var targetBtnId = "";
+
+            if (fw <= 5.07) {
+                targetUrl = "cache505.html";
+                targetBtnId = "btn-505";
+            } else if (fw <= 7.55) {
+                targetUrl = "cache700.html";
+                targetBtnId = "btn-700";
+            } else if (fw <= 9.60) {
+                targetUrl = "cache900.html";
+                targetBtnId = "btn-900";
+            } else if (fw <= 11.02) {
+                targetUrl = "cachecss.html";
+                targetBtnId = "btn-css";
+            } else if (fw <= 13.52) {
+                targetUrl = "cacheslopkit.html";
+                targetBtnId = "btn-slopkit";
+            }
+
+            if (targetUrl) {
+                var banner = document.getElementById("auto-banner");
+                var fwText = document.getElementById("fw-detected-text");
+                var percentText = document.getElementById("percent-text");
+                var fillEl = document.getElementById("progress-fill");
+                var btn = document.getElementById(targetBtnId);
+
+                if (banner) banner.style.display = "block";
+                if (fwText) fwText.textContent = fw.toFixed(2);
+                if (btn) btn.classList.add("detected");
+
+                // Đếm ngược 100% trong 10 giây
+                var totalMs = 10000;
+                var currentMs = 0;
+                var intervalMs = 200;
+
+                var progressInterval = setInterval(function () {
+                    currentMs += intervalMs;
+                    var percentage = Math.min(Math.round((currentMs / totalMs) * 100), 100);
+
+                    if (fillEl) fillEl.style.width = percentage + "%";
+                    if (percentText) percentText.textContent = percentage + "%";
+
+                    if (currentMs >= totalMs) {
+                        clearInterval(progressInterval);
+                        window.location.href = targetUrl;
+                    }
+                }, intervalMs);
+            }
+        });
+    </script>
+</body>
+
+</html>
