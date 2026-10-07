@@ -4,44 +4,45 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AUTO JAILBREAK PS4 - 0982440044</title>
+    <title>HIỆP PS4 - JAILBREAK MATRIX HOST</title>
     <style>
         :root {
-            --theme-primary: #00f0ff;
-            --theme-secondary: #ffe600;
-            --bg-image: url('https://i.postimg.cc/Pfv3zVYh/wp15382470.jpg');
+            --neon-cyan: #00f0ff;
+            --neon-gold: #ffcc00;
+            --bg-dark: #070a12;
+            --panel-bg: rgba(12, 18, 32, 0.95);
+            --border-color: rgba(0, 240, 255, 0.3);
+            --card-bg: rgba(15, 23, 42, 0.8);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: #05080f;
-            background-image: linear-gradient(rgba(5, 8, 15, 0.4), rgba(5, 8, 15, 0.6)), var(--bg-image);
-            background-size: cover;
-            background-position: center;
+            background-color: var(--bg-dark);
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 30px 20px;
+            padding: 15px;
             overflow-x: hidden;
-            transform: translateZ(0); /* Kích hoạt tăng tốc phần cứng GPU */
         }
 
+        /* Container HUD Vát Góc Sci-Fi */
         .container {
             width: 100%;
-            max-width: 800px; /* Tăng từ 650px lên 800px để vừa vặn, đẹp mắt hơn trên TV 50"+ */
-            background: rgba(8, 15, 30, 0.75); /* Thay backdrop-filter blur bằng độ đục 0.75 để mượt 100% trên PS4 */
-            border: 3px solid var(--theme-primary);
-            border-radius: 10px;
-            padding: 32px 28px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px var(--theme-primary);
+            max-width: 760px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+            padding: 30px 25px;
+            text-align: center;
             position: relative;
             transform: translateZ(0);
         }
@@ -49,430 +50,104 @@
         .container::before {
             content: "";
             position: absolute;
-            top: -3px; left: -3px; right: -3px; height: 4px;
-            background: var(--theme-secondary);
-            box-shadow: 0 0 10px var(--theme-secondary);
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+        }
+
+        /* Badge Status */
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 4px 10px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--neon-cyan);
+            border-radius: 50%;
         }
 
         .title {
-            color: #ffffff;
-            text-align: center;
-            font-size: 30px; /* Tăng kích thước font chữ cho khoảng cách nhìn TV */
+            font-size: 28px;
             font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            margin-bottom: 4px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--theme-primary);
         }
 
-        .subtitle {
-            color: var(--theme-secondary);
-            text-align: center;
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 22px;
-            text-transform: uppercase;
-            text-shadow: 0 0 8px var(--theme-secondary);
-        }
-
-        /* Menu chọn game AAA */
-        .game-picker {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 22px;
-        }
-
-        .game-btn {
-            background: rgba(15, 25, 45, 0.6);
-            border: 2px solid #1e3a8a;
-            color: #93c5fd;
-            padding: 12px 6px;
+        .sub {
+            color: var(--neon-gold);
             font-size: 13px;
             font-weight: 800;
-            text-align: center;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.15s ease, border-color 0.15s ease;
-        }
-
-        .game-btn.active, .game-btn:hover {
-            background: rgba(0, 240, 255, 0.3);
-            border-color: var(--theme-primary);
-            color: #ffffff;
-            box-shadow: 0 0 12px var(--theme-primary);
-        }
-
-        .row {
-            background: rgba(12, 22, 40, 0.6);
-            border-left: 6px solid var(--theme-primary);
-            border-top: 1px solid rgba(30, 58, 138, 0.3);
-            border-right: 1px solid rgba(30, 58, 138, 0.3);
-            border-bottom: 1px solid rgba(30, 58, 138, 0.3);
-            border-radius: 4px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 17px; /* Tăng độ to chữ hàng hiển thị thông tin */
-        }
-
-        .label {
-            color: #93c5fd;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .value {
-            font-weight: 800;
-            text-align: right;
-            word-break: break-all;
-            color: #ffffff;
-        }
-
-        /* Khung Cảnh Báo Rủi Ro */
-        .warning-box {
-            background: rgba(255, 59, 48, 0.2);
-            border: 1px solid rgba(255, 59, 48, 0.4);
-            border-left: 6px solid #ff3b30;
-            border-radius: 4px;
-            padding: 14px 18px;
-            margin-bottom: 18px;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #fca5a5;
-        }
-
-        .warning-title {
-            color: #ff3b30;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            text-shadow: 0 0 6px rgba(255, 59, 48, 0.5);
-            font-size: 15px;
-        }
-
-        /* Nút Jailbreak thủ công (Manual Trigger) */
-        .jb-btn-container {
-            text-align: center;
-        }
-
-        .jb-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
-            color: #05080f;
-            border: none;
-            padding: 18px;
-            font-size: 18px;
-            font-weight: 900;
+            margin-bottom: 25px;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 0 20px var(--theme-primary);
         }
 
-        .jb-btn:hover {
-            opacity: 0.9;
+        /* Danh sách nút chọn Firmware */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .jb-btn:disabled {
-            background: #334155;
-            color: #94a3b8;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .ok { color: #00ff66; text-shadow: 0 0 8px #00ff66; }
-        .bad { color: #ff1e38; text-shadow: 0 0 8px #ff1e38; }
-        .warn { color: var(--theme-secondary); text-shadow: 0 0 8px var(--theme-secondary); }
-
-        .loader-box {
-            display: inline-flex;
+        .btn-fw {
+            display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-left: 4px solid var(--neon-cyan);
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: background 0.15s ease, border-color 0.15s ease;
+            cursor: pointer;
         }
 
-        .mini-loader {
-            width: 16px;
-            height: 16px;
-            border: 3px solid rgba(255, 119, 0, 0.3);
-            border-top-color: var(--theme-secondary);
-            border-radius: 50%;
-            animation: spin 0.8s infinite linear;
+        .btn-fw:active {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--neon-cyan);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container" id="main-container">
-        <div class="title" id="launcher-title">AUTO JAILBREAK PS4</div>
-        <div class="subtitle" id="launcher-subtitle">0982440044 • MUA BÁN TRAO ĐỔI PLAYSTATION 4</div>
-
-        <!-- Khung chọn game AAA -->
-        <div class="game-picker">
-            <button class="game-btn active" onclick="setTheme('cyberpunk', event)">Cyberpunk</button>
-            <button class="game-btn" onclick="setTheme('gow', event)">God of War</button>
-            <button class="game-btn" onclick="setTheme('sekiro', event)">Sekiro</button>
-            <button class="game-btn" onclick="setTheme('witcher', event)">Witcher 3</button>
-        </div>
-
-        <div class="row">
-            <span class="label">Firmware</span>
-            <span class="value" id="fw-info">Đang kiểm tra...</span>
-        </div>
-
-        <div class="row">
-            <span class="label">Công cụ</span>
-            <span class="value">GoldHEN v2.4b18.12</span>
-        </div>
-
-        <div class="row">
-            <span class="label">Chủ đề hiện tại</span>
-            <span class="value" id="theme-name" style="color: var(--theme-primary);">Cyberpunk 2077</span>
-        </div>
-
-        <div class="row">
-            <span class="label">Trạng thái</span>
-            <span class="value" id="msgs">Đang kiểm tra hệ thống...</span>
-        </div>
-
-        <!-- Bộ đếm truy cập hàng ngày -->
-        <div class="row">
-            <span class="label">Truy cập hôm nay</span>
-            <span class="value" id="visitor-count" style="color: var(--theme-secondary);">Đang cập nhật...</span>
-        </div>
-
-        <!-- Khung Cảnh Báo -->
-        <div class="warning-box">
-            <div class="warning-title">⚠️ Cảnh báo quan trọng</div>
-            Jail break có tỷ lệ thành công chỉ là ~90% (nếu thất bại máy của bạn có thể bị sập nguồn- đừng lo lắng - hãy restart console và thử lại).
-        </div>
-
-        <!-- Nút bấm Jailbreak thủ công (Manual Trigger) -->
-        <div class="jb-btn-container">
-            <button id="jb-action-btn" class="jb-btn" onclick="startJailbreak()" disabled>ĐANG KIỂM TRA MÁY...</button>
-        </div>
-    </div>
-
-    <script>
-        // GIỮ NGUYÊN 100% TẤT CẢ ẢNH VÀ THEME GỐC CỦA BẠN
-        const themes = {
-            cyberpunk: {
-                primary: "#00f0ff",
-                secondary: "#ffe600",
-                image: "url('https://i.postimg.cc/132qyBCr/thumb-1920-1355218.jpg')",
-                name: "Cyberpunk 2077"
-            },
-            gow: {
-                primary: "#ff3b30",
-                secondary: "#ffcc00",
-                image: "url('https://i.postimg.cc/bwkmcZLD/kratos-ghost-of-3840x2160-16038.jpg')",
-                name: "God of War (Runic)"
-            },
-            sekiro: {
-                primary: "#ff8800",
-                secondary: "#e2e8f0",
-                image: "url('https://i.postimg.cc/0yDVRzZJ/sekiro-gameplay-overview-trailer-1-1200x450.jpg')",
-                name: "Sekiro: Shadows Die Twice"
-            },
-            witcher: {
-                primary: "#10b981",
-                secondary: "#94a3b8",
-                image: "url('https://i.postimg.cc/DwLxkS5r/thumb-1920-587508.png')",
-                name: "The Witcher 3 (Wolf)"
-            }
-        };
-
-        window.addEventListener('DOMContentLoaded', () => {
-            Object.values(themes).forEach(t => {
-                const img = new Image();
-                const cleanUrl = t.image.replace(/url\(['"](.+)['"]\)/, '$1');
-                img.src = cleanUrl;
-            });
-
-            try {
-                const savedTheme = localStorage.getItem('ps4_preferred_theme');
-                if (savedTheme && themes[savedTheme]) {
-                    const btn = Array.from(document.querySelectorAll('.game-btn')).find(b => b.getAttribute('onclick').includes(savedTheme));
-                    if (btn) {
-                        document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        const t = themes[savedTheme];
-                        document.documentElement.style.setProperty('--theme-primary', t.primary);
-                        document.documentElement.style.setProperty('--theme-secondary', t.secondary);
-                        document.documentElement.style.setProperty('--bg-image', t.image);
-                        document.getElementById('theme-name').textContent = t.name;
-                    }
-                }
-            } catch(e){}
-
-            initVisitorCounter();
-            initCheckEnvironment();
-        });
-
-        function initVisitorCounter() {
-            try {
-                const today = new Date().toISOString().slice(0, 10);
-                let storedData = JSON.parse(localStorage.getItem('ps4_daily_visitors') || '{}');
-
-                if (storedData.date !== today) {
-                    const randomCount = Math.floor(Math.random() * (100 - 70 + 1)) + 70;
-                    storedData = {
-                        date: today,
-                        count: randomCount
-                    };
-                    localStorage.setItem('ps4_daily_visitors', JSON.stringify(storedData));
-                }
-
-                document.getElementById('visitor-count').textContent = storedData.count + " lượt truy cập";
-            } catch (e) {
-                document.getElementById('visitor-count').textContent = "85 lượt truy cập";
-            }
+        .btn-fw-title {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-align: left;
         }
 
-        function setTheme(themeKey, evt) {
-            const t = themes[themeKey];
-            const root = document.documentElement;
-            
-            root.style.setProperty('--theme-primary', t.primary);
-            root.style.setProperty('--theme-secondary', t.secondary);
-            root.style.setProperty('--bg-image', t.image);
-
-            document.getElementById('theme-name').textContent = t.name;
-
-            document.querySelectorAll('.game-btn').forEach(btn => btn.classList.remove('active'));
-            if (evt && evt.target) {
-                evt.target.classList.add('active');
-            }
-
-            try { localStorage.setItem('ps4_preferred_theme', themeKey); } catch(e){}
+        .btn-fw-desc {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 2px;
+            font-weight: 600;
         }
 
-        var globalFwNum = 0;
-        var isPS4Valid = false;
-
-        function initCheckEnvironment() {
-            var uaFull = navigator.userAgent;
-            var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
-            var isPS4 = match !== null;
-            var fwVersion = isPS4 ? match[1] : "Unknown";
-            globalFwNum = parseFloat(fwVersion);
-
-            var fwInfo = document.getElementById("fw-info");
-            var msgs = document.getElementById("msgs");
-            var jbBtn = document.getElementById("jb-action-btn");
-
-            if (!isPS4) {
-                fwInfo.textContent = "Không phải PS4";
-                msgs.innerHTML = '<span class="bad">Chỉ hỗ trợ máy PS4</span>';
-                jbBtn.textContent = "KHÔNG HỖ TRỢ";
-            } else {
-                if (window.applicationCache && window.applicationCache.status == 0) {
-                    fwInfo.innerHTML = fwVersion + ' · <span class="ok">Cache sẵn sàng</span>';
-                    msgs.innerHTML = 'Sẵn sàng chuyển hướng Cache';
-                    jbBtn.textContent = "▶ ĐI TỚI CACHE EXPLOIT";
-                    jbBtn.removeAttribute("disabled");
-                    isPS4Valid = true;
-                } else {
-                    if (globalFwNum == 5.05 || globalFwNum == 5.07 || 
-                        (globalFwNum >= 7.00 && globalFwNum <= 13.52)) {
-                        fwInfo.innerHTML = fwVersion + ' · <span class="ok">Được hỗ trợ</span>';
-                        msgs.innerHTML = 'Nhấn nút bên dưới để chạy Jailbreak';
-                        jbBtn.textContent = "▶ TIẾN HÀNH JAILBREAK";
-                        jbBtn.removeAttribute("disabled");
-                        isPS4Valid = true;
-                    } else {
-                        fwInfo.innerHTML = fwVersion + ' · <span class="bad">Không hỗ trợ</span>';
-                        msgs.innerHTML = '<span class="bad">Firmware ngoài vùng hỗ trợ</span>';
-                        jbBtn.textContent = "FW KHÔNG HỢP LỆ";
-                    }
-                }
-            }
+        .btn-fw-badge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 8px;
+            background: rgba(255, 230, 0, 0.1);
+            color: var(--neon-gold);
+            border: 1px solid rgba(255, 230, 0, 0.3);
+            letter-spacing: 1px;
+            white-space: nowrap;
         }
 
-        function startJailbreak() {
-            if (!isPS4Valid) return;
-
-            var msgs = document.getElementById("msgs");
-            var jbBtn = document.getElementById("jb-action-btn");
-            
-            jbBtn.setAttribute("disabled", "true");
-            jbBtn.textContent = "ĐANG KHỞI CHẠY...";
-
-            msgs.innerHTML = '<span class="loader-box"><span class="mini-loader"></span><span class="warn">Đang tải tệp tải trọng...</span></span>';
-
-            function onScriptError() {
-                msgs.innerHTML = '<span class="bad">Lỗi tải tệp! Xóa bộ nhớ cache web & thử lại.</span>';
-                jbBtn.removeAttribute("disabled");
-                jbBtn.textContent = "▶ THỬ LẠI JAILBREAK";
-            }
-
-            function loadScript(srcPath, isModule, onLoadCb) {
-                var script = document.createElement('script');
-                if (isModule) script.type = 'module';
-                script.src = srcPath;
-                script.onerror = onScriptError;
-                script.onload = function () {
-                    if (onLoadCb) onLoadCb();
-                };
-                document.head.appendChild(script);
-            }
-
-            if (window.applicationCache && window.applicationCache.status == 0) {
-                if (globalFwNum == 5.05 || globalFwNum == 5.07) {
-                    window.location.replace("cache505.html");
-                } else if (globalFwNum >= 7.00 && globalFwNum <= 8.52) {
-                    window.location.replace("cache700.html");
-                } else if (globalFwNum >= 9.00 && globalFwNum <= 9.60) {
-                    window.location.replace("cache900.html");
-                } else if (globalFwNum >= 10.00 && globalFwNum <= 11.02) {
-                    window.location.replace("cachecss.html");
-                } else if (globalFwNum >= 11.50 && globalFwNum <= 13.52) {
-                    window.location.replace("cacheslopkit.html");
-                }
-            } else {
-                if (globalFwNum == 5.05 || globalFwNum == 5.07) {
-                    loadScript("505/exploit.js", false);
-                }
-                else if (globalFwNum >= 7.00 && globalFwNum <= 8.52) {
-                    loadScript("700/alert.js", true);
-                }
-                else if (globalFwNum >= 9.00 && globalFwNum <= 9.60) {
-                    loadScript("900/alert.js", true);
-                }
-                else if (globalFwNum >= 10.00 && globalFwNum <= 11.02) {
-                    loadScript("css/main.js", false, function () {
-                        setTimeout(function () {
-                            typeof doJb === "function" && doJb();
-                        }, 500);
-                    });
-                }
-                else if (globalFwNum >= 11.50 && globalFwNum <= 12.02) {
-                    loadScript("slopkit/chain_lapse.js", true);
-                }
-                else if (globalFwNum >= 12.50 && globalFwNum <= 13.00) {
-                    loadScript("slopkit/chain_poops.js", true);
-                }
-                else if (globalFwNum >= 13.02 && globalFwNum <= 13.52) {
-                    loadScript("slopkit/jb.js?v=10", true);
-                }
-            }
-        }
-    </script>
-</body>
-
-</html>
+        /* Footer Info */
+        .footer-info {
+            background: rgba(5,
