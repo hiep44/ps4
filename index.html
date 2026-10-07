@@ -1,154 +1,263 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIỆP 44 - PS4 AUTO HOST SELECTOR</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            background: #0b0e14; 
-            color: #fff; 
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 550px;
-            background-color: #121824;
-            border: 1px solid #1c2638;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-        }
-        .brand-title { 
-            color: #0088ff; 
-            font-size: 26px; 
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        .brand-sub { 
-            color: #00ffcc; 
-            font-size: 18px; 
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .brand-desc {
-            color: #a0aec0;
-            font-size: 15px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #1c2638;
-        }
-        .msg { 
-            font-size: 16px; 
-            color: #ffffff; 
-            font-weight: 600;
-            min-height: 24px;
-            margin-bottom: 16px;
-        }
-        .timer-box {
-            font-size: 14px;
-            color: #8c9ba5;
-            margin-bottom: 12px;
-        }
-        .timer-count {
-            color: #0088ff;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background-color: #1c2638;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background-color: #0088ff;
-            transition: width 0.1s linear;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AUTO JAILBREAK PS4 - HIỆP 44</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root {
+      --cp-bg: #0a0b10;
+      --cp-card-bg: #12141f;
+      --cp-pink: #ff0055;
+      --cp-yellow: #fcee0a;
+      --cp-cyan: #00f0ff;
+      --cp-dim: #505670;
+      --cp-red: #ff2a6d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--cp-bg);
+      color: var(--cp-cyan);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
+      transform: translateZ(0); /* Tối ưu GPU nhẹ cho WebKit PS4 */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 22px;
+    }
+
+    .header h1 {
+      color: var(--cp-yellow);
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0px var(--cp-pink);
+    }
+
+    .header p {
+      color: var(--cp-cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .info-card {
+      background: var(--cp-card-bg);
+      border-left: 4px solid var(--cp-pink);
+      border-right: 1px solid var(--cp-cyan);
+      border-top: 1px solid #1a1e2e;
+      border-bottom: 1px solid #1a1e2e;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 6px;
+      background: var(--cp-yellow);
+    }
+
+    .info-label {
+      color: var(--cp-yellow);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      font-weight: 700;
+      font-size: 15px;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    .info-value.error {
+      color: var(--cp-red);
+    }
+
+    .warning-box {
+      background: rgba(252, 238, 10, 0.05);
+      border: 1px solid var(--cp-yellow);
+      border-left: 4px solid var(--cp-yellow);
+      padding: 12px 16px;
+      margin-top: 18px;
+      margin-bottom: 12px;
+      color: var(--cp-yellow);
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .warning-box span {
+      color: var(--cp-pink);
+      font-weight: 800;
+    }
+
+    .credits {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--cp-dim);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .credits a {
+      color: var(--cp-pink);
+      text-decoration: none;
+      margin: 0 4px;
+      font-weight: 800;
+    }
+
+    .credits a:hover {
+      color: var(--cp-yellow);
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="brand-title">HIỆP 44 PLAYSTATION</div>
-        <div class="brand-sub">Hotline: 0982 440 044</div>
-        <div class="brand-desc">Chuyên mua bán - trao đổi máy & phụ kiện PlayStation</div>
-
-        <div class="msg" id="msg">Đang kiểm tra phiên bản Firmware...</div>
-        
-        <div class="timer-box" id="timer-box" style="display: none;">
-            Tự động chuyển hướng sau <span class="timer-count" id="countdown">10</span> giây...
-        </div>
-
-        <div class="progress-bar" id="progress-bar" style="display: none;">
-            <div class="progress-fill" id="progress-fill"></div>
-        </div>
+  <div class="container">
+    <div class="header">
+      <h1>AUTO JAILBREAK PS4 - HIỆP 44</h1>
+      <p>SYSTEM FW 5.05 - 13.52 // HOTLINE: 0982.440.044</p>
     </div>
 
-    <script>
-        var ua = navigator.userAgent;
-        var msg = document.getElementById('msg');
-        var timerBox = document.getElementById('timer-box');
-        var progressBar = document.getElementById('progress-bar');
-        var progressFill = document.getElementById('progress-fill');
-        var countdownEl = document.getElementById('countdown');
+    <div class="info-card">
+      <div class="info-label">FIRMWARE</div>
+      <div class="info-value" id="fw-val">CHECKING...</div>
+    </div>
 
-        var targetUrl = "";
+    <div class="info-card">
+      <div class="info-label">PAYLOAD</div>
+      <div class="info-value">GoldHEN v2.4b18.12</div>
+    </div>
 
-        // Nhận diện FW qua UserAgent của PS4 Browser
-        if (ua.indexOf("PlayStation 4") !== -1) {
-            if (ua.indexOf("5.05") !== -1) {
-                msg.textContent = "Phát hiện FW 5.05!";
-                targetUrl = "cache505.html";
-            } else if (ua.indexOf("7.00") !== -1 || ua.indexOf("7.02") !== -1 || ua.indexOf("7.55") !== -1) {
-                msg.textContent = "Phát hiện FW 7.xx!";
-                targetUrl = "cache700.html";
-            } else if (ua.indexOf("9.00") !== -1) {
-                msg.textContent = "Phát hiện FW 9.00!";
-                targetUrl = "cache900.html";
-            } else if (ua.indexOf("11.00") !== -1 || ua.indexOf("13.52") !== -1) {
-                msg.textContent = "Phát hiện FW cao (PPPwn / Slopkit)!";
-                targetUrl = "cacheslopkit.html";
-            } else {
-                msg.textContent = "Phát hiện FW 9.xx / CSS!";
-                targetUrl = "cachecss.html";
-            }
+    <div class="info-card">
+      <div class="info-label">STATUS</div>
+      <div class="info-value" id="msgs">LOADING GOLDHEN... PLEASE WAIT</div>
+    </div>
 
-            // Bắt đầu đếm ngược 10 giây
-            startCountdown(targetUrl);
+    <div class="warning-box">
+      <span>[ SYSTEM WARNING ]</span> Jailbreak có tỷ lệ thành công là 80-90%. Nếu thất bại có thể khiến máy bị sập nguồn, xin đừng quá lo lắng, hãy restart console và thử lại.
+    </div>
+
+    <div class="credits">
+      DEVELOPED BY <a href="tel:0982440044">HIỆP 44 (0982.440.044)</a> // CYBER EXPLOIT HOST
+    </div>
+  </div>
+
+  <script>
+    // Dọn dẹp Garbage Collection WebKit giảm thiểu rủi ro Panic khi nổ Exploit
+    if (window.gc) window.gc();
+
+    var uaFull = navigator.userAgent;
+    var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+    var isPS4 = match !== null;
+    var fwVersion = isPS4 ? match[1] : "Unknown";
+    var fwNum = parseFloat(fwVersion);
+
+    var msgs = document.getElementById("msgs");
+    var fwVal = document.getElementById("fw-val");
+
+    function onScriptError() {
+      msgs.className = "info-value error";
+      msgs.innerHTML = "Không tìm thấy nội dung! - Xóa dữ liệu duyệt web và cài lại Cache ...";
+    }
+
+    function loadScript(src, isModule, callback) {
+      var script = document.createElement('script');
+      if (isModule) script.type = 'module';
+      script.src = src;
+      script.onerror = onScriptError;
+      if (callback) script.onload = callback;
+      document.head.appendChild(script);
+    }
+
+    if (!isPS4) {
+      fwVal.className = "info-value error";
+      fwVal.innerHTML = "NOT A PS4";
+      msgs.className = "info-value error";
+      msgs.innerHTML = "Vui lòng truy cập trang này từ Trình duyệt PS4";
+    } else {
+      fwVal.innerHTML = "PS4 " + fwVersion;
+
+      if (window.applicationCache && window.applicationCache.status == 0) {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+          window.location.replace("cache505.html");
+        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+          window.location.replace("cache700.html");
+        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+          window.location.replace("cache900.html");
+        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+          window.location.replace("cachecss.html");
+        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+          window.location.replace("cacheslopkit.html");
         } else {
-            msg.textContent = "Bạn đang truy cập từ Máy tính/Điện thoại. Hãy mở trang này bằng Trình duyệt PS4 để hack máy.";
+          fwVal.className = "info-value error";
+          msgs.className = "info-value error";
+          msgs.innerHTML = 'Firmware không được hỗ trợ: ' + fwVersion;
         }
+      } else {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+          loadScript("505/exploit.js", false);
+        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+          loadScript("700/alert.js", true);
+        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+          loadScript("900/alert.js", true);
+        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+          loadScript("css/main.js", false, function () {
+            setTimeout(function () {
+              if (typeof doJb === 'function') doJb();
+            }, 500);
+          });
+        } else if (fwNum >= 11.50 && fwNum <= 12.02) {
+          loadScript("slopkit/chain_lapse.js", true);
+        } else if (fwNum >= 12.50 && fwNum <= 13.00) {
+          loadScript("slopkit/chain_poops.js", true);
+        } else if (fwNum >= 13.02 && fwNum <= 13.52) {
+          loadScript("slopkit/jb.js?v=19", true);
+        } else {
+          msgs.className = "info-value error";
+          msgs.innerHTML = 'Chỉ hỗ trợ máy PS4 FW 5.05 và 7.00 - 13.52';
+        }
+      }
+    }
+  </script>
+</body>
 
-        function startCountdown(url) {
-            timerBox.style.display = "block";
-            progressBar.style.display = "block";
-
-            var totalSeconds = 10;
-            var currentMs = 0;
-            var totalMs = totalSeconds * 1000;
-            var intervalMs = 100;
-
-            var timer = setInterval(function() {
-                currentMs += intervalMs;
-                var secondsLeft = Math.ceil((totalMs - currentMs) / 1000);
-                var percent = Math.min((currentMs / totalMs) * 100, 100);
-
-                countdownEl.textContent = secondsLeft;
-                progressFill.style.width = percent + "%";
-
-                if (currentMs >= totalMs) {
-                    clearInterval(timer);
-                    window.location.href = url
+</html>
