@@ -6,15 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HIỆP PS4 - JAILBREAK MATRIX HOST</title>
     <style>
-        :root {
-            --neon-cyan: #00f0ff;
-            --neon-gold: #ffcc00;
-            --bg-dark: #070a12;
-            --panel-bg: rgba(12, 18, 32, 0.95);
-            --border-color: rgba(0, 240, 255, 0.3);
-            --card-bg: rgba(15, 23, 42, 0.8);
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -24,7 +15,7 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: #070a12;
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -34,12 +25,11 @@
             overflow-x: hidden;
         }
 
-        /* Container HUD Vát Góc Sci-Fi */
         .container {
             width: 100%;
             max-width: 760px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(12, 18, 32, 0.95);
+            border: 1px solid rgba(0, 240, 255, 0.3);
             clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
             padding: 30px 25px;
             text-align: center;
@@ -52,10 +42,9 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            background: linear-gradient(90deg, transparent, #00f0ff, transparent);
         }
 
-        /* Badge Status */
         .header-tag {
             display: inline-flex;
             align-items: center;
@@ -63,7 +52,7 @@
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
-            color: var(--neon-cyan);
+            color: #00f0ff;
             background: rgba(0, 240, 255, 0.08);
             border: 1px solid rgba(0, 240, 255, 0.2);
             padding: 4px 10px;
@@ -74,7 +63,7 @@
         .dot {
             width: 6px;
             height: 6px;
-            background-color: var(--neon-cyan);
+            background-color: #00f0ff;
             border-radius: 50%;
         }
 
@@ -88,14 +77,46 @@
         }
 
         .sub {
-            color: var(--neon-gold);
+            color: #ffcc00;
             font-size: 13px;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             letter-spacing: 2px;
         }
 
-        /* Danh sách nút chọn Firmware */
+        /* Khung báo Auto Redirect & Thanh Progress Bar */
+        .auto-banner {
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid #00f0ff;
+            color: #ffffff;
+            padding: 14px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .banner-text {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00f0ff, #ffcc00);
+            transition: width 0.2s linear;
+        }
+
         .menu-grid {
             display: flex;
             flex-direction: column;
@@ -107,9 +128,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--card-bg);
+            background: rgba(15, 23, 42, 0.8);
             border: 1px solid rgba(0, 240, 255, 0.2);
-            border-left: 4px solid var(--neon-cyan);
+            border-left: 4px solid #00f0ff;
             padding: 16px 20px;
             text-decoration: none;
             color: #ffffff;
@@ -117,9 +138,10 @@
             cursor: pointer;
         }
 
-        .btn-fw:active {
-            background: rgba(0, 240, 255, 0.15);
-            border-color: var(--neon-cyan);
+        .btn-fw.detected {
+            border-color: #ffcc00;
+            border-left-color: #ffcc00;
+            background: rgba(255, 204, 0, 0.15);
         }
 
         .btn-fw-title {
@@ -142,13 +164,12 @@
             font-weight: 800;
             padding: 4px 8px;
             background: rgba(255, 230, 0, 0.1);
-            color: var(--neon-gold);
+            color: #ffcc00;
             border: 1px solid rgba(255, 230, 0, 0.3);
             letter-spacing: 1px;
             white-space: nowrap;
         }
 
-        /* Footer Info */
         .footer-info {
             background: rgba(5, 10, 20, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -167,57 +188,6 @@
         <div class="title">HIỆP PS4 • EXPLOIT HOST</div>
         <div class="sub">HOTLINE: 0982440044</div>
 
-        <div class="menu-grid">
-            <!-- 1. FW 5.05 - 5.07 -->
-            <a href="cache505.html" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 5.05 - 5.07</div>
-                    <div class="btn-fw-desc">Ultra Stable / GoldHEN WebKit Payload</div>
-                </div>
-                <div class="btn-fw-badge">STABLE</div>
-            </a>
-
-            <!-- 2. FW 6.72 - 7.55 -->
-            <a href="cache700.html" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 6.72 - 7.55</div>
-                    <div class="btn-fw-desc">Old Firmware WebKit Exploit</div>
-                </div>
-                <div class="btn-fw-badge">AUTO JB</div>
-            </a>
-
-            <!-- 3. FW 9.00 - 9.60 -->
-            <a href="cache900.html" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 9.00 - 9.60</div>
-                    <div class="btn-fw-desc">Exfathax / GoldHEN USB Auto Payload</div>
-                </div>
-                <div class="btn-fw-badge">POPULAR</div>
-            </a>
-
-            <!-- 4. FW 10.00 - 11.02 -->
-            <a href="cachecss.html" class="btn-fw">
-                <div>
-                    <div class="btn-fw-title">FW 10.00 - 11.02</div>
-                    <div class="btn-fw-desc">PPPwn / CSS WebKit Exploit Execution</div>
-                </div>
-                <div class="btn-fw-badge">AUTO JB</div>
-            </a>
-
-            <!-- 5. FW 11.02 - 13.52 (SLOPKIT) -->
-            <a href="cacheslopkit.html" class="btn-fw" style="border-left-color: var(--neon-gold);">
-                <div>
-                    <div class="btn-fw-title">FW 11.02 - 13.52 (SLOPKIT)</div>
-                    <div class="btn-fw-desc">Quantum Slopkit WebKit Execution</div>
-                </div>
-                <div class="btn-fw-badge" style="color: var(--neon-cyan); border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.1);">ADVANCED</div>
-            </a>
-        </div>
-
-        <div class="footer-info">
-            VUI LÒNG CHỌN ĐÚNG PHIÊN BẢN FIRMWARE CỦA MÁY PS4
-        </div>
-    </div>
-</body>
-
-</html>
+        <!-- Thông báo tự động lựa chọn & Đếm % -->
+        <div id="auto-banner" class="auto-banner">
+            <div class="banner-text">
