@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AUTO JAILBREAK PS4 - HIỆP 44</title>
+  <title>CYBER EXPLOIT CORE - HIỆP 44</title>
   <link rel="stylesheet" href="../style.css">
   <style>
     :root {
-      --cp-bg: #0a0b10;
-      --cp-card-bg: #12141f;
-      --cp-pink: #ff0055;
-      --cp-yellow: #fcee0a;
-      --cp-cyan: #00f0ff;
-      --cp-dim: #505670;
-      --cp-red: #ff2a6d;
+      --sc-bg: #04060a;
+      --sc-panel: rgba(10, 16, 26, 0.9);
+      --sc-cyan: #00f0ff;
+      --sc-pink: #ff0055;
+      --sc-yellow: #ffe600;
+      --sc-dim: #3a4a63;
+      --sc-red: #ff2255;
     }
 
     * {
@@ -26,163 +26,238 @@
     }
 
     body {
-      background-color: var(--cp-bg);
-      color: var(--cp-cyan);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--sc-bg);
+      color: var(--sc-cyan);
+      font-family: 'Consolas', 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow: hidden;
-      transform: translateZ(0); /* Tối ưu GPU nhẹ cho WebKit PS4 */
+      padding: 15px;
+      transform: translateZ(0);
     }
 
-    .container {
+    .hud-core {
       width: 100%;
-      max-width: 620px;
-      text-align: center;
-    }
-
-    .header {
-      margin-bottom: 22px;
-    }
-
-    .header h1 {
-      color: var(--cp-yellow);
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 0px var(--cp-pink);
-    }
-
-    .header p {
-      color: var(--cp-cyan);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .info-card {
-      background: var(--cp-card-bg);
-      border-left: 4px solid var(--cp-pink);
-      border-right: 1px solid var(--cp-cyan);
-      border-top: 1px solid #1a1e2e;
-      border-bottom: 1px solid #1a1e2e;
-      padding: 15px 20px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 660px;
+      background: var(--sc-panel);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.1);
       position: relative;
     }
 
-    .info-card::before {
+    .hud-core::before {
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
-      width: 6px;
-      height: 6px;
-      background: var(--cp-yellow);
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
     }
 
-    .info-label {
-      color: var(--cp-yellow);
-      font-weight: 800;
-      font-size: 13px;
+    .hud-header {
+      background: rgba(0, 240, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hud-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--sc-yellow);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+    }
+
+    .hud-hotline {
+      font-size: 11px;
+      color: var(--sc-cyan);
+      border: 1px solid var(--sc-cyan);
+      padding: 3px 8px;
       letter-spacing: 1px;
+      background: rgba(0, 240, 255, 0.1);
+    }
+
+    .hud-body {
+      padding: 20px;
+    }
+
+    .module-grid {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .module-box {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-left: 3px solid var(--sc-pink);
+      padding: 12px 15px;
+    }
+
+    .module-tag {
+      font-size: 10px;
+      color: var(--sc-dim);
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
       text-transform: uppercase;
     }
 
-    .info-value {
-      font-weight: 700;
+    .module-val {
       font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .module-val.error {
+      color: var(--sc-red);
+    }
+
+    .terminal-box {
+      background: #020305;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      padding: 16px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .terminal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 10px;
+      color: var(--sc-cyan);
+      letter-spacing: 1px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--sc-yellow);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--sc-yellow);
+    }
+
+    .terminal-output {
+      font-size: 14px;
+      font-weight: 700;
       color: #ffffff;
-      text-align: right;
-    }
-
-    .info-value.error {
-      color: var(--cp-red);
-    }
-
-    .warning-box {
-      background: rgba(252, 238, 10, 0.05);
-      border: 1px solid var(--cp-yellow);
-      border-left: 4px solid var(--cp-yellow);
-      padding: 12px 16px;
-      margin-top: 18px;
-      margin-bottom: 12px;
-      color: var(--cp-yellow);
-      font-size: 12px;
-      line-height: 1.5;
-      font-weight: 600;
-      text-align: left;
-    }
-
-    .warning-box span {
-      color: var(--cp-pink);
-      font-weight: 800;
-    }
-
-    .credits {
-      margin-top: 18px;
-      font-size: 12px;
-      color: var(--cp-dim);
+      min-height: 22px;
       letter-spacing: 0.5px;
-      text-transform: uppercase;
     }
 
-    .credits a {
-      color: var(--cp-pink);
-      text-decoration: none;
-      margin: 0 4px;
+    .terminal-output.error {
+      color: var(--sc-red);
+    }
+
+    .scan-line {
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 240, 255, 0.15);
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scan-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
+    }
+
+    .alert-hud {
+      background: rgba(255, 230, 0, 0.03);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+      border-left: 4px solid var(--sc-yellow);
+      padding: 12px 15px;
+      font-size: 11px;
+      color: var(--sc-yellow);
+      line-height: 1.6;
+    }
+
+    .alert-hud span {
+      color: var(--sc-pink);
       font-weight: 800;
     }
 
-    .credits a:hover {
-      color: var(--cp-yellow);
+    .hud-footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--sc-dim);
+    }
+
+    .hud-footer a {
+      color: var(--sc-pink);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hud-footer a:hover {
+      color: var(--sc-yellow);
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="header">
-      <h1>AUTO JAILBREAK PS4 - HIỆP 44</h1>
-      <p>SYSTEM FW 5.05 - 13.52 // HOTLINE: 0982.440.044</p>
+  <div class="hud-core">
+    <div class="hud-header">
+      <div class="hud-title">AUTO JAILBREAK // HIỆP 44</div>
+      <div class="hud-hotline">TEL: 0982.440.044</div>
     </div>
 
-    <div class="info-card">
-      <div class="info-label">FIRMWARE</div>
-      <div class="info-value" id="fw-val">CHECKING...</div>
+    <div class="hud-body">
+      <div class="module-grid">
+        <div class="module-box">
+          <div class="module-tag">// SYSTEM FIRMWARE</div>
+          <div class="module-val" id="fw-val">SCANNING...</div>
+        </div>
+        <div class="module-box">
+          <div class="module-tag">// TARGET PAYLOAD</div>
+          <div class="module-val">GoldHEN v2.4b18.12</div>
+        </div>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-head">
+          <span>> EXECUTION CORE STATUS</span>
+          <span class="pulse-dot"></span>
+        </div>
+        <div class="terminal-output" id="msgs">LOADING GOLDHEN... PLEASE WAIT</div>
+        <div class="scan-line"></div>
+      </div>
+
+      <div class="alert-hud">
+        <span>[ SYSTEM NOTICE ]</span> Jailbreak có tỷ lệ thành công là 80-90%. Nếu thất bại có thể khiến máy bị sập nguồn, xin đừng quá lo lắng, hãy restart console và thử lại.
+      </div>
     </div>
 
-    <div class="info-card">
-      <div class="info-label">PAYLOAD</div>
-      <div class="info-value">GoldHEN v2.4b18.12</div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-label">STATUS</div>
-      <div class="info-value" id="msgs">LOADING GOLDHEN... PLEASE WAIT</div>
-    </div>
-
-    <div class="warning-box">
-      <span>[ SYSTEM WARNING ]</span> Jailbreak có tỷ lệ thành công là 80-90%. Nếu thất bại có thể khiến máy bị sập nguồn, xin đừng quá lo lắng, hãy restart console và thử lại.
-    </div>
-
-    <div class="credits">
-      DEVELOPED BY <a href="tel:0982440044">HIỆP 44 (0982.440.044)</a> // CYBER EXPLOIT HOST
+    <div class="hud-footer">
+      <div>HOST: Matrix Exploit Host v19</div>
+      <div>DEV: <a href="tel:0982440044">HIỆP 44</a></div>
     </div>
   </div>
 
   <script>
-    // Dọn dẹp Garbage Collection WebKit giảm thiểu rủi ro Panic khi nổ Exploit
     if (window.gc) window.gc();
 
     var uaFull = navigator.userAgent;
@@ -195,7 +270,7 @@
     var fwVal = document.getElementById("fw-val");
 
     function onScriptError() {
-      msgs.className = "info-value error";
+      msgs.className = "terminal-output error";
       msgs.innerHTML = "Không tìm thấy nội dung! - Xóa dữ liệu duyệt web và cài lại Cache ...";
     }
 
@@ -209,9 +284,9 @@
     }
 
     if (!isPS4) {
-      fwVal.className = "info-value error";
+      fwVal.className = "module-val error";
       fwVal.innerHTML = "NOT A PS4";
-      msgs.className = "info-value error";
+      msgs.className = "terminal-output error";
       msgs.innerHTML = "Vui lòng truy cập trang này từ Trình duyệt PS4";
     } else {
       fwVal.innerHTML = "PS4 " + fwVersion;
@@ -228,8 +303,8 @@
         } else if (fwNum >= 11.50 && fwNum <= 13.52) {
           window.location.replace("cacheslopkit.html");
         } else {
-          fwVal.className = "info-value error";
-          msgs.className = "info-value error";
+          fwVal.className = "module-val error";
+          msgs.className = "terminal-output error";
           msgs.innerHTML = 'Firmware không được hỗ trợ: ' + fwVersion;
         }
       } else {
@@ -252,7 +327,7 @@
         } else if (fwNum >= 13.02 && fwNum <= 13.52) {
           loadScript("slopkit/jb.js?v=19", true);
         } else {
-          msgs.className = "info-value error";
+          msgs.className = "terminal-output error";
           msgs.innerHTML = 'Chỉ hỗ trợ máy PS4 FW 5.05 và 7.00 - 13.52';
         }
       }
