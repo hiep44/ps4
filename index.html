@@ -3,42 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PS4 AUTO HOST SELECTOR</title>
+    <title>HIỆP 44 - PS4 AUTO HOST SELECTOR</title>
     <style>
-        body { background: #0b0e14; color: #fff; font-family: sans-serif; text-align: center; padding-top: 20vh; }
-        h1 { color: #0088ff; }
-        .msg { font-size: 18px; color: #8c9ba5; margin-top: 10px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: #0b0e14; 
+            color: #fff; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background-color: #121824;
+            border: 1px solid #1c2638;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        .brand-title { 
+            color: #0088ff; 
+            font-size: 26px; 
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .brand-sub { 
+            color: #00ffcc; 
+            font-size: 18px; 
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .brand-desc {
+            color: #a0aec0;
+            font-size: 15px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #1c2638;
+        }
+        .msg { 
+            font-size: 16px; 
+            color: #ffffff; 
+            font-weight: 600;
+            min-height: 24px;
+            margin-bottom: 16px;
+        }
+        .timer-box {
+            font-size: 14px;
+            color: #8c9ba5;
+            margin-bottom: 12px;
+        }
+        .timer-count {
+            color: #0088ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #1c2638;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #0088ff;
+            transition: width 0.1s linear;
+        }
     </style>
 </head>
 <body>
-    <h1>ĐANG KIỂM TRA PHIÊN BẢN FIRMWARE...</h1>
-    <div class="msg" id="msg">Vui lòng chờ trong giây lát...</div>
+
+    <div class="container">
+        <div class="brand-title">HIỆP 44 PLAYSTATION</div>
+        <div class="brand-sub">Hotline: 0982 440 044</div>
+        <div class="brand-desc">Chuyên mua bán - trao đổi máy & phụ kiện PlayStation</div>
+
+        <div class="msg" id="msg">Đang kiểm tra phiên bản Firmware...</div>
+        
+        <div class="timer-box" id="timer-box" style="display: none;">
+            Tự động chuyển hướng sau <span class="timer-count" id="countdown">10</span> giây...
+        </div>
+
+        <div class="progress-bar" id="progress-bar" style="display: none;">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         var ua = navigator.userAgent;
         var msg = document.getElementById('msg');
+        var timerBox = document.getElementById('timer-box');
+        var progressBar = document.getElementById('progress-bar');
+        var progressFill = document.getElementById('progress-fill');
+        var countdownEl = document.getElementById('countdown');
+
+        var targetUrl = "";
 
         // Nhận diện FW qua UserAgent của PS4 Browser
         if (ua.indexOf("PlayStation 4") !== -1) {
             if (ua.indexOf("5.05") !== -1) {
-                msg.textContent = "Phát hiện FW 5.05 - Đang chuyển hướng...";
-                setTimeout(() => { window.location.href = "cache505.html"; }, 1000);
+                msg.textContent = "Phát hiện FW 5.05!";
+                targetUrl = "cache505.html";
             } else if (ua.indexOf("7.00") !== -1 || ua.indexOf("7.02") !== -1 || ua.indexOf("7.55") !== -1) {
-                msg.textContent = "Phát hiện FW 7.xx - Đang chuyển hướng...";
-                setTimeout(() => { window.location.href = "cache700.html"; }, 1000);
+                msg.textContent = "Phát hiện FW 7.xx!";
+                targetUrl = "cache700.html";
             } else if (ua.indexOf("9.00") !== -1) {
-                msg.textContent = "Phát hiện FW 9.00 - Đang chuyển hướng...";
-                setTimeout(() => { window.location.href = "cache900.html"; }, 1000);
+                msg.textContent = "Phát hiện FW 9.00!";
+                targetUrl = "cache900.html";
             } else if (ua.indexOf("11.00") !== -1 || ua.indexOf("13.52") !== -1) {
-                msg.textContent = "Phát hiện FW cao (PPPwn / Slopkit) - Đang chuyển hướng...";
-                setTimeout(() => { window.location.href = "cacheslopkit.html"; }, 1000);
+                msg.textContent = "Phát hiện FW cao (PPPwn / Slopkit)!";
+                targetUrl = "cacheslopkit.html";
             } else {
-                msg.textContent = "Phát hiện FW 9.xx/CSS - Đang chuyển hướng...";
-                setTimeout(() => { window.location.href = "cachecss.html"; }, 1000);
+                msg.textContent = "Phát hiện FW 9.xx / CSS!";
+                targetUrl = "cachecss.html";
             }
+
+            // Bắt đầu đếm ngược 10 giây
+            startCountdown(targetUrl);
         } else {
-            msg.textContent = "Bạn đang truy cập từ Máy tính/Điện thoại. Hãy mở trang này bằng Trình duyệt PS4.";
+            msg.textContent = "Bạn đang truy cập từ Máy tính/Điện thoại. Hãy mở trang này bằng Trình duyệt PS4 để hack máy.";
         }
-    </script>
-</body>
-</html>
+
+        function startCountdown(url) {
+            timerBox.style.display = "block";
+            progressBar.style.display = "block";
+
+            var totalSeconds = 10;
+            var currentMs = 0;
+            var totalMs = totalSeconds * 1000;
+            var intervalMs = 100;
+
+            var timer = setInterval(function() {
+                currentMs += intervalMs;
+                var secondsLeft = Math.ceil((totalMs - currentMs) / 1000);
+                var percent = Math.min((currentMs / totalMs) * 100, 100);
+
+                countdownEl.textContent = secondsLeft;
+                progressFill.style.width = percent + "%";
+
+                if (currentMs >= totalMs) {
+                    clearInterval(timer);
+                    window.location.href = url
