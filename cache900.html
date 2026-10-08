@@ -33,10 +33,9 @@
       justify-content: center;
       align-items: center;
       padding: 15px;
-      transform: translateZ(0); /* Tối ưu GPU cho WebKit PS4 */
+      transform: translateZ(0);
     }
 
-    /* KHUNG ĐIỀU KHIỂN HOLOGRAM */
     .hud-core {
       width: 100%;
       max-width: 660px;
@@ -57,7 +56,6 @@
       background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
     }
 
-    /* BANNER TIÊU ĐỀ */
     .hud-header {
       background: rgba(0, 240, 255, 0.05);
       border-bottom: 1px solid rgba(0, 240, 255, 0.2);
@@ -89,7 +87,6 @@
       padding: 20px;
     }
 
-    /* BẢNG MODULE THÔNG TIN */
     .module-grid {
       display: flex;
       gap: 12px;
@@ -119,7 +116,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* MÀN HÌNH STATUS TERMINAL */
     .terminal-box {
       background: #020305;
       border: 1px solid rgba(0, 240, 255, 0.25);
@@ -154,67 +150,38 @@
       min-height: 22px;
       letter-spacing: 0.5px;
     }
-
-    .scan-line {
-      width: 100%;
-      height: 2px;
-      background: rgba(0, 240, 255, 0.15);
-      margin-top: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scan-line::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 40%;
-      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
-    }
-
-    /* CẢNH BÁO CHẾ ĐỘ OFFLINE */
-    .alert-hud {
-      background: rgba(255, 230, 0, 0.03);
-      border: 1px solid rgba(255, 230, 0, 0.3);
-      border-left: 4px solid var(--sc-yellow);
-      padding: 12px 15px;
-      font-size: 11px;
-      color: var(--sc-yellow);
-      line-height: 1.6;
-    }
-
-    .alert-hud span {
-      color: var(--sc-pink);
-      font-weight: 800;
-    }
-
-    /* FOOTER */
-    .hud-footer {
-      background: rgba(0, 0, 0, 0.5);
-      border-top: 1px solid rgba(0, 240, 255, 0.1);
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--sc-dim);
-    }
-
-    .hud-footer a {
-      color: var(--sc-pink);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .hud-footer a:hover {
-      color: var(--sc-yellow);
-    }
   </style>
 </head>
 
 <body>
+
+  <div class="hud-core">
+    <div class="hud-header">
+      <div class="hud-title">AUTO JAILBREAK // HIỆP 44</div>
+      <div class="hud-hotline">TEL: 0982.440.044</div>
+    </div>
+
+    <div class="hud-body">
+      <div class="module-grid">
+        <div class="module-box">
+          <div class="module-tag">TARGET FW</div>
+          <div class="module-val">9.00</div>
+        </div>
+        <div class="module-box">
+          <div class="module-tag">PAYLOAD</div>
+          <div class="module-val">GoldHEN v2.4b16</div>
+        </div>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-head">
+          <span>SYSTEM STATUS</span>
+          <span class="pulse-dot"></span>
+        </div>
+        <div class="terminal-output" id="msgs">Đang chuẩn bị hệ thống...</div>
+      </div>
+    </div>
+  </div>
 
   <script>
     history.replaceState(null, null, 'index.html');
@@ -222,33 +189,41 @@
     history.go(-histlength);
 
     function DLProgress(e) {
-      Percent = (Math.round(e.loaded / e.total * 100));
-      window.msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%";
+      var Percent = (Math.round(e.loaded / e.total * 100));
+      document.getElementById("msgs").innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%";
     }
 
     function DisplayCacheProgress() {
-      window.msgs.innerHTML = "Đã cài đặt Cache thành công ✔";
+      document.getElementById("msgs").innerHTML = "Đã cài đặt Cache thành công ✔";
       setTimeout(function () {
-        window.msgs.innerHTML = "Hãy đóng và mở lại trình duyệt...";
-      }, 1500);
+        document.getElementById("msgs").innerHTML = "Đang kích hoạt Jailbreak...";
+        runExploit();
+      }, 1000);
+    }
+
+    function runExploit() {
+      // Kiểm tra và gọi hàm nạp Payload từ các file JS đính kèm
+      if (typeof loadGoldHEN === "function") {
+        loadGoldHEN();
+      } else if (typeof poc === "function") {
+        poc();
+      } else {
+        document.getElementById("msgs").innerHTML = "Đang thực thi Webkit Exploit...";
+      }
     }
 
     window.applicationCache.addEventListener("progress", DLProgress, false);
     window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
     window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
     window.applicationCache.onerror = function (e) {
-      window.msgs.innerHTML = "Lỗi cài đặt Cache! Hãy xóa dữ liệu trình duyệt và thử lại...";
+      // Khi đã lưu cache trước đó (chạy Offline), tự động chạy Exploit ngay
+      runExploit();
     };
   </script>
 
-  <div class="hud-core">
-    <!-- HEADER -->
-    <div class="hud-header">
-      <div class="hud-title">AUTO JAILBREAK // HIỆP 44</div>
-      <div class="hud-hotline">TEL: 0982.440.044</div>
-    </div>
+  <!-- Đảm bảo khai báo đúng đường dẫn các file JS exploit/payload của bạn ở đây -->
+  <script src="exploit.js"></script>
+  <script src="goldhen.js"></script>
 
-    <div class="hud-body">
-      <!-- CÁC MODULE THÔNG TIN -->
-      <div class="module-grid">
-        <div class
+</body>
+</html>
