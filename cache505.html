@@ -15,9 +15,9 @@
         }
 
         body {
-            background-color: #0b0e14;
+            background: radial-gradient(circle at top, #0f172a 0%, #070a10 100%);
             color: #ffffff;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,70 +28,151 @@
 
         .container {
             width: 100%;
-            max-width: 650px;
-            background-color: #0b0e14;
+            max-width: 620px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
+            position: relative;
+        }
+
+        /* Nền hiệu ứng phía sau */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 10px;
+            padding: 16px 10px;
+            background: rgba(18, 24, 38, 0.6);
+            border: 1px solid rgba(0, 136, 255, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 136, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0088ff, #00f2fe, transparent);
+            animation: scan 3s infinite linear;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .header h1 {
-            color: #0088ff;
-            font-size: 24px;
+            color: #ffffff;
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 6px;
+            text-shadow: 0 0 12px rgba(0, 136, 255, 0.6);
+            background: linear-gradient(180deg, #ffffff 0%, #a5d8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .header p {
-            color: #6a7b95;
-            font-size: 14px;
-            font-weight: 600;
+            color: #0088ff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
         }
 
         .card-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .card {
-            background-color: #121824;
-            border: 1px solid #1c2638;
-            border-radius: 8px;
-            padding: 18px 24px;
+            background: rgba(18, 24, 38, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            border-color: rgba(0, 136, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 136, 255, 0.15);
         }
 
         .card-label {
-            color: #8c9ba5;
-            font-size: 15px;
+            color: #8a9bb4;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #0088ff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #0088ff;
         }
 
         .card-value {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             text-align: right;
+            color: #e2e8f0;
+        }
+
+        /* Thẻ Trạng Thái Đặt Biệt */
+        .card:last-child {
+            background: rgba(0, 136, 255, 0.05);
+            border-color: rgba(0, 136, 255, 0.3);
         }
 
         .status-msg {
-            color: #0088ff;
+            color: #00d2ff;
             word-break: break-word;
+            font-size: 15px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.65; }
         }
 
         .footer {
-            margin-top: 15px;
+            margin-top: 10px;
             text-align: center;
             font-size: 12px;
             color: #4a5a70;
@@ -99,9 +180,16 @@
         }
 
         .footer a {
-            color: #f31414;
+            color: #ff3b30;
             text-decoration: none;
             margin: 0 4px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #ff6b63;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -120,32 +208,9 @@
 
     <div class="container">
         <div class="header">
-            <h1>AUTO JAILBREAK PS4 - KENNY YOON</h1>
-            <p>HỖ TRỢ FW 5.05 - 13.52</p>
+            <h1>AUTO JAILBREAK PS4 - 0982440044</h1>
+            <p>HỖ TRỢ FW 5.05 - 13.52 - mua bán trao đổi playstation</p>
         </div>
 
         <div class="card-list">
             <div class="card">
-                <div class="card-label">FIRMWARE</div>
-                <div class="card-value" id="fw-val">5.05 / 5.07</div>
-            </div>
-
-            <div class="card">
-                <div class="card-label">TẢI TRỌNG</div>
-                <div class="card-value">Cài đặt Cache Offline</div>
-            </div>
-
-            <div class="card">
-                <div class="card-label">NGÀY CẬP NHẬT</div>
-                <div class="card-value">9/10/2026</div>
-            </div>
-
-            <div class="card">
-                <div class="card-label">TRẠNG THÁI</div>
-                <div class="card-value status-msg" id="msgs">Đang bắt đầu cài đặt Cache...</div>
-            </div>
-        </div>
-
-</body>
-
-</html>
