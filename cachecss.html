@@ -2,291 +2,149 @@
 <html manifest="css.manifest">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CYBER EXPLOIT CORE - CACHE 1000</title>
-  <style>
-    :root {
-      --sc-bg: #04060a;
-      --sc-panel: rgba(10, 16, 26, 0.9);
-      --sc-cyan: #00f0ff;
-      --sc-pink: #ff0055;
-      --sc-yellow: #ffe600;
-      --sc-dim: #3a4a63;
-      --sc-red: #ff2255;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 AUTO JAILBREAK - 0982440044</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-      -webkit-user-select: none;
-    }
+        body {
+            background-color: #0b0e14;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
 
-    body {
-      background-color: var(--sc-bg);
-      color: var(--sc-cyan);
-      font-family: 'Consolas', 'Courier New', monospace;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-      transform: translateZ(0); /* Tối ưu GPU cho WebKit PS4 */
-    }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #0b0e14;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    /* KHUNG ĐIỀU KHIỂN HOLOGRAM */
-    .hud-core {
-      width: 100%;
-      max-width: 660px;
-      background: var(--sc-panel);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.1);
-      position: relative;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-    .hud-core::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
-    }
+        .header h1 {
+            color: #0088ff;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
 
-    /* BANNER TIÊU ĐỀ */
-    .hud-header {
-      background: rgba(0, 240, 255, 0.05);
-      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .header p {
+            color: #6a7b95;
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-    .hud-title {
-      font-size: 16px;
-      font-weight: 900;
-      color: var(--sc-yellow);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
-    }
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    .hud-hotline {
-      font-size: 11px;
-      color: var(--sc-cyan);
-      border: 1px solid var(--sc-cyan);
-      padding: 3px 8px;
-      letter-spacing: 1px;
-      background: rgba(0, 240, 255, 0.1);
-    }
+        .card {
+            background-color: #121824;
+            border: 1px solid #1c2638;
+            border-radius: 8px;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hud-body {
-      padding: 20px;
-    }
+        .card-label {
+            color: #8c9ba5;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    /* BẢNG MODULE THÔNG TIN */
-    .module-grid {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 15px;
-    }
+        .card-value {
+            font-size: 16px;
+            font-weight: 700;
+            text-align: right;
+        }
 
-    .module-box {
-      flex: 1;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(0, 240, 255, 0.15);
-      border-left: 3px solid var(--sc-pink);
-      padding: 10px 12px;
-    }
+        .status-msg {
+            color: #0088ff;
+            word-break: break-word;
+        }
 
-    .module-tag {
-      font-size: 10px;
-      color: var(--sc-dim);
-      letter-spacing: 1.5px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-    }
+        .footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #4a5a70;
+            line-height: 1.6;
+        }
 
-    .module-val {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-
-    /* MÀN HÌNH STATUS TERMINAL */
-    .terminal-box {
-      background: #020305;
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      padding: 16px;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .terminal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 10px;
-      color: var(--sc-cyan);
-      letter-spacing: 1px;
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--sc-yellow);
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 8px var(--sc-yellow);
-    }
-
-    .terminal-output {
-      font-size: 14px;
-      font-weight: 700;
-      color: #ffffff;
-      min-height: 22px;
-      letter-spacing: 0.5px;
-    }
-
-    .scan-line {
-      width: 100%;
-      height: 2px;
-      background: rgba(0, 240, 255, 0.15);
-      margin-top: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scan-line::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 40%;
-      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
-    }
-
-    /* CẢNH BÁO CHẾ ĐỘ OFFLINE */
-    .alert-hud {
-      background: rgba(255, 230, 0, 0.03);
-      border: 1px solid rgba(255, 230, 0, 0.3);
-      border-left: 4px solid var(--sc-yellow);
-      padding: 12px 15px;
-      font-size: 11px;
-      color: var(--sc-yellow);
-      line-height: 1.6;
-    }
-
-    .alert-hud span {
-      color: var(--sc-pink);
-      font-weight: 800;
-    }
-
-    /* FOOTER */
-    .hud-footer {
-      background: rgba(0, 0, 0, 0.5);
-      border-top: 1px solid rgba(0, 240, 255, 0.1);
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--sc-dim);
-    }
-
-    .hud-footer a {
-      color: var(--sc-pink);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .hud-footer a:hover {
-      color: var(--sc-yellow);
-    }
-  </style>
+        .footer a {
+            color: #f31414;
+            text-decoration: none;
+            margin: 0 4px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <script>
-    history.replaceState(null, null, 'index.html');
-    var histlength = history.length;
-    history.go(-histlength);
+    <script>
+        history.replaceState(null, null, 'index.html'); var histlength = history.length; history.go(-histlength);
+        function DLProgress(e) { Percent = (Math.round(e.loaded / e.total * 100)); window.msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%"; }
+        function DisplayCacheProgress() { window.msgs.innerHTML = "Đã cài đặt Cache thành công ✔"; setTimeout(function () { window.msgs.innerHTML = "Hãy đóng và mở lại trình duyệt..."; }, 1500); }
+        window.applicationCache.addEventListener("progress", DLProgress, false);
+        window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
+        window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
+        window.applicationCache.onerror = function (e) { window.msgs.innerHTML = "Lỗi cài đặt Cache! Hãy xóa dữ liệu trình duyệt và thử lại..."; };
+    </script>
 
-    function DLProgress(e) {
-      Percent = (Math.round(e.loaded / e.total * 100));
-      window.msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%";
-    }
-
-    function DisplayCacheProgress() {
-      window.msgs.innerHTML = "Đã cài đặt Cache thành công ✔";
-      setTimeout(function () {
-        window.msgs.innerHTML = "Hãy đóng và mở lại trình duyệt...";
-      }, 1500);
-    }
-
-    window.applicationCache.addEventListener("progress", DLProgress, false);
-    window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
-    window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
-    window.applicationCache.onerror = function (e) {
-      window.msgs.innerHTML = "Lỗi cài đặt Cache! Hãy xóa dữ liệu trình duyệt và thử lại...";
-    };
-  </script>
-
-  <div class="hud-core">
-    <!-- HEADER -->
-    <div class="hud-header">
-      <div class="hud-title">AUTO JAILBREAK // HIỆP 44</div>
-      <div class="hud-hotline">TEL: 0982.440.044</div>
-    </div>
-
-    <div class="hud-body">
-      <!-- CÁC MODULE THÔNG TIN -->
-      <div class="module-grid">
-        <div class="module-box">
-          <div class="module-tag">// FIRMWARE</div>
-          <div class="module-val" id="fw-val">10.00 - 11.02</div>
+    <div class="container">
+        <div class="header">
+            <h1>AUTO JAILBREAK PS4 - KENNY YOON</h1>
+            <p>HỖ TRỢ FW 5.05 - 13.52</p>
         </div>
-        <div class="module-box">
-          <div class="module-tag">// TASK</div>
-          <div class="module-val">Cache Offline</div>
-        </div>
-        <div class="module-box">
-          <div class="module-tag">// UPDATED</div>
-          <div class="module-val">27/09/2026</div>
-        </div>
-      </div>
 
-      <!-- MÀN HÌNH TIẾN TRÌNH CACHE -->
-      <div class="terminal-box">
-        <div class="terminal-head">
-          <span>> CACHE INSTALLATION STATUS</span>
-          <span class="pulse-dot"></span>
+        <div class="card-list">
+            <div class="card">
+                <div class="card-label">FIRMWARE</div>
+                <div class="card-value" id="fw-val">10.00 - 11.02</div>
+            </div>
+
+            <div class="card">
+                <div class="card-label">TẢI TRỌNG</div>
+                <div class="card-value">Cài đặt Cache Offline</div>
+            </div>
+
+            <div class="card">
+                <div class="card-label">NGÀY CẬP NHẬT</div>
+                <div class="card-value">10/10/2026</div>
+            </div>
+
+            <div class="card">
+                <div class="card-label">TRẠNG THÁI</div>
+                <div class="card-value status-msg" id="msgs">Đang bắt đầu cài đặt Cache...</div>
+            </div>
         </div>
-        <div class="terminal-output" id="msgs">Đang bắt đầu cài đặt Cache...</div>
-        <div class="scan-line"></div>
-      </div>
-
-      <!-- LƯU Ý OFFLINE -->
-      <div class="alert-hud">
-        <span>[ OFFLINE MODE ]</span> Sau khi Cache hoàn tất, bạn có thể tắt kết nối Internet / Wi-Fi trên máy PS4 và sử dụng GoldHEN hoàn toàn Offline.
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="hud-footer">
-      <div>HOST: Matrix Exploit Host v19</div>
-      <div>DEV: <a href="tel:0982440044">HIỆP 44</a></div>
-    </div>
-  </div>
 
 </body>
 
