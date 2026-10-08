@@ -1,239 +1,297 @@
 <!DOCTYPE html>
-<html manifest="700.manifest">
+<html lang="vi" manifest="700.manifest">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PS4 AUTO JAILBREAK - 0982440044</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-user-select: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CYBER EXPLOIT CORE - HIỆP 44</title>
+  <style>
+    :root {
+      --sc-bg: #04060a;
+      --sc-panel: rgba(10, 16, 26, 0.9);
+      --sc-cyan: #00f0ff;
+      --sc-pink: #ff0055;
+      --sc-yellow: #ffe600;
+      --sc-dim: #3a4a63;
+      --sc-red: #ff2255;
+    }
 
-        body {
-            background: radial-gradient(circle at top, #0f172a 0%, #070a10 100%);
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            padding: 20px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 620px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: relative;
-        }
+    body {
+      background-color: var(--sc-bg);
+      color: var(--sc-cyan);
+      font-family: 'Consolas', 'Courier New', monospace;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      transform: translateZ(0);
+    }
 
-        /* Nền hiệu ứng phía sau */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 150, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
+    .hud-core {
+      width: 100%;
+      max-width: 660px;
+      background: var(--sc-panel);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.1);
+      position: relative;
+    }
 
-        .header {
-            text-align: center;
-            padding: 16px 10px;
-            background: rgba(18, 24, 38, 0.6);
-            border: 1px solid rgba(0, 136, 255, 0.2);
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 136, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
+    .hud-core::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
+    }
 
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #0088ff, #00f2fe, transparent);
-            animation: scan 3s infinite linear;
-        }
+    .hud-header {
+      background: rgba(0, 240, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
+    .hud-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--sc-yellow);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+    }
 
-        .header h1 {
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            text-shadow: 0 0 12px rgba(0, 136, 255, 0.6);
-            background: linear-gradient(180deg, #ffffff 0%, #a5d8ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .hud-hotline {
+      font-size: 11px;
+      color: var(--sc-cyan);
+      border: 1px solid var(--sc-cyan);
+      padding: 3px 8px;
+      letter-spacing: 1px;
+      background: rgba(0, 240, 255, 0.1);
+    }
 
-        .header p {
-            color: #0088ff;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
+    .hud-body {
+      padding: 20px;
+    }
 
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .module-grid {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
 
-        .card {
-            background: rgba(18, 24, 38, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
+    .module-box {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-left: 3px solid var(--sc-pink);
+      padding: 12px 15px;
+    }
 
-        .card:hover {
-            border-color: rgba(0, 136, 255, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0, 136, 255, 0.15);
-        }
+    .module-tag {
+      font-size: 10px;
+      color: var(--sc-dim);
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
 
-        .card-label {
-            color: #8a9bb4;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .module-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
 
-        .card-label::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: #0088ff;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #0088ff;
-        }
+    .terminal-box {
+      background: #020305;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      padding: 16px;
+      margin-bottom: 15px;
+      position: relative;
+    }
 
-        .card-value {
-            font-size: 15px;
-            font-weight: 700;
-            text-align: right;
-            color: #e2e8f0;
-        }
+    .terminal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 10px;
+      color: var(--sc-cyan);
+      letter-spacing: 1px;
+    }
 
-        /* Thẻ Trạng Thái Đặc Biệt */
-        .card:last-child {
-            background: rgba(0, 136, 255, 0.05);
-            border-color: rgba(0, 136, 255, 0.3);
-        }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--sc-yellow);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--sc-yellow);
+    }
 
-        .status-msg {
-            color: #00d2ff;
-            word-break: break-word;
-            font-size: 15px;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-            animation: pulse 2s infinite ease-in-out;
-        }
+    .terminal-output {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      min-height: 22px;
+      letter-spacing: 0.5px;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.65; }
-        }
+    .terminal-output.error {
+      color: var(--sc-red);
+    }
 
-        .footer {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 12px;
-            color: #4a5a70;
-            line-height: 1.6;
-        }
+    .scan-line {
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 240, 255, 0.15);
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .footer a {
-            color: #ff3b30;
-            text-decoration: none;
-            margin: 0 4px;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
+    .scan-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, var(--sc-cyan), transparent);
+    }
 
-        .footer a:hover {
-            color: #ff6b63;
-            text-decoration: underline;
-        }
-    </style>
+    .alert-hud {
+      background: rgba(255, 230, 0, 0.03);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+      border-left: 4px solid var(--sc-yellow);
+      padding: 12px 15px;
+      font-size: 11px;
+      color: var(--sc-yellow);
+      line-height: 1.6;
+    }
+
+    .alert-hud span {
+      color: var(--sc-pink);
+      font-weight: 800;
+    }
+
+    .hud-footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--sc-dim);
+    }
+
+    .hud-footer a {
+      color: var(--sc-pink);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hud-footer a:hover {
+      color: var(--sc-yellow);
+    }
+  </style>
 </head>
 
 <body>
 
-    <script>
-        history.replaceState(null, null, 'index.html'); var histlength = history.length; history.go(-histlength);
-        function DLProgress(e) { Percent = (Math.round(e.loaded / e.total * 100)); window.msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%"; }
-        function DisplayCacheProgress() { window.msgs.innerHTML = "Đã cài đặt Cache thành công ✔"; setTimeout(function () { window.msgs.innerHTML = "Hãy đóng và mở lại trình duyệt..."; }, 1500); }
-        window.applicationCache.addEventListener("progress", DLProgress, false);
-        window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
-        window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
-        window.applicationCache.onerror = function (e) { window.msgs.innerHTML = "Lỗi cài đặt Cache! Hãy xóa dữ liệu trình duyệt và thử lại..."; };
-    </script>
+  <script>
+    // Kiểm tra trình duyệt PS4 trước khi điều hướng history
+    var isPS4 = /PlayStation 4/i.test(navigator.userAgent);
+    if (isPS4) {
+      history.replaceState(null, null, 'index.html');
+      var histlength = history.length;
+      if (histlength > 0) {
+        history.go(-histlength);
+      }
+    }
 
-    <div class="container">
-        <div class="header">
-            <h1>AUTO JAILBREAK PS4 - 0982440044</h1>
-            <p>HỖ TRỢ FW 5.05 - 13.52 - MUA BÁN TRAO ĐỔI PLAYSTATION</p>
-        </div>
+    function DLProgress(e) {
+      var Percent = (Math.round(e.loaded / e.total * 100));
+      var msgs = document.getElementById("msgs");
+      if (msgs) msgs.innerHTML = "Đang cài đặt Cache Offline: " + Percent + "%";
+    }
 
-        <div class="card-list">
-            <div class="card">
-                <div class="card-label">FIRMWARE</div>
-                <div class="card-value" id="fw-val">7.00 - 8.52</div>
-            </div>
+    function DisplayCacheProgress() {
+      var msgs = document.getElementById("msgs");
+      if (msgs) {
+        msgs.innerHTML = "Đã cài đặt Cache thành công ✔";
+        setTimeout(function () {
+          msgs.innerHTML = "Hãy đóng và mở lại trình duyệt...";
+        }, 1500);
+      }
+    }
 
-            <div class="card">
-                <div class="card-label">TẢI TRỌNG</div>
-                <div class="card-value">Cài đặt Cache Offline</div>
-            </div>
+    if (window.applicationCache) {
+      window.applicationCache.addEventListener("progress", DLProgress, false);
+      window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
+      window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
+      window.applicationCache.onerror = function (e) {
+        var msgs = document.getElementById("msgs");
+        if (msgs) {
+          msgs.className = "terminal-output error";
+          msgs.innerHTML = "Lỗi cài đặt Cache! Hãy xóa dữ liệu trình duyệt và thử lại...";
+        }
+      };
+    }
+  </script>
 
-            <div class="card">
-                <div class="card-label">NGÀY CẬP NHẬT</div>
-                <div class="card-value">10/10/2026</div>
-            </div>
-
-            <div class="card">
-                <div class="card-label">TRẠNG THÁI</div>
-                <div class="card-value status-msg" id="msgs">Đang bắt đầu cài đặt Cache...</div>
-            </div>
-        </div>
+  <div class="hud-core">
+    <div class="hud-header">
+      <div class="hud-title">AUTO JAILBREAK // HIỆP 44</div>
+      <div class="hud-hotline">TEL: 0982.440.044</div>
     </div>
+
+    <div class="hud-body">
+      <div class="module-grid">
+        <div class="module-box">
+          <div class="module-tag">// FIRMWARE TARGET</div>
+          <div class="module-val" id="fw-val">7.00 - 8.52</div>
+        </div>
+        <div class="module-box">
+          <div class="module-tag">// TARGET SERVICE</div>
+          <div class="module-val">CACHE INSTALLER</div>
+        </div>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-head">
+          <span>> OFFLINE CACHE INSTALLATION</span>
+          <span class="pulse-dot"></span>
+        </div>
+        <div class="terminal-output" id="msgs">Đang bắt đầu cài đặt Cache...</div>
+        <div class="scan-line"></div>
+      </div>
+
+      <div class="alert-hud">
+        <span>[ SYSTEM NOTICE ]</span> Cập nhật ngày 10/10/2026. Sau khi cài đặt thành công, hãy ngắt kết nối mạng và mở lại Trình duyệt PS4 để sử dụng Offline.
+      </div>
+    </div>
+
+    <div class="hud-footer">
+      <div>HOST: Matrix Exploit Host v19</div>
+      <div>DEV: <a href="tel:0982440044">HIỆP 44</a></div>
+    </div>
+  </div>
 
 </body>
 
